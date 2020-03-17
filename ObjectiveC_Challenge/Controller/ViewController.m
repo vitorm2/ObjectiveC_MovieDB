@@ -7,6 +7,8 @@
 //
 
 #import "ViewController.h"
+#import <Foundation/Foundation.h>
+#import "Movie.h"
 
 @interface ViewController ()
 
@@ -16,8 +18,16 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    Movie *myMovie =[[Movie alloc] init];
+    myMovie.videoId = 10;
+    
+    [myMovie someFunction];
+    
+    NSLog(@"movieId: %d", myMovie.videoId);
+   
 }
+
 
 
 @end
