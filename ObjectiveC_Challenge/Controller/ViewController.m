@@ -25,7 +25,7 @@
     
     Service *myService = [[Service alloc] init];
    
-    [myService fetchMovieDetails:500 completion:^(Movie * movieDetails) {
+    [myService fetchMovieDetails: 552 completion:^(Movie * movieDetails) {
         NSLog(movieDetails.title);
     }];
 }
