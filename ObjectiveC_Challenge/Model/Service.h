@@ -11,6 +11,6 @@
 
 @interface Service : NSData
 
-- (NSString *) getDataFrom:(NSString *)url;
+- (void) getMovieDetail:(NSString *)url;
 
 @end

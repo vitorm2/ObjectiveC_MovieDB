@@ -8,34 +8,77 @@
 
 #import <Foundation/Foundation.h>
 #import "Service.h"
+#import "Movie.h"
 
 @implementation Service
 
-- (NSString *) getDataFrom:(NSString *)url{
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-    [request setHTTPMethod:@"GET"];
-    [request setURL:[NSURL URLWithString:url]];
+- (void) getMovieDetail:(NSString *)movieId {
     
-    
-//    [request setHTTPBody:body];
-//    [request setValue:[NSString stringWithFormat:@"%d", [body length]] forHTTPHeaderField:@"Content-Length"];
-    
-    NSError *error = nil;
-    NSHTTPURLResponse *responseCode = nil;
+    NSString *urlString = @"https://api.themoviedb.org/3/movie/552?api_key=79bb37b9869aa0ed97dc7a23c93d0829";
+    NSString *baseUrl = @"https://image.tmdb.org/t/p/w500";
 
-    // requisiton call
-    NSData *oResponseData = [NSURLConnection sendSynchronousRequest:request returningResponse:&responseCode error:&error];
-
-    // 200 = retornou o objeto movie
-    if([responseCode statusCode] != 200){
-        NSLog(@"Error getting %@, HTTP status code %i", url, [responseCode statusCode]);
-        return nil;
-    }
-
-    // Falta fazer o parsing
+    NSURL *url = [NSURL URLWithString: urlString];
+    
+    [[NSURLSession.sharedSession dataTaskWithURL:url completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        
+        
+//        - API fetch string result
+//        NSString *myString = [[NSString alloc] initWithData: data encoding:NSUTF8StringEncoding];
+        
+        NSError *err;
+        
+        NSDictionary *movieJSON = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&err];
+        
+        if (error) {
+            NSLog(@"ERRO PARSE JSON");
+            return;
+        }
+        
+        Movie *movieDetails = [[Movie alloc] init];
+        
+        movieDetails.title = [movieJSON objectForKey: @"original_title"];
+        movieDetails.overview = [movieJSON objectForKey: @"overview"];
+        movieDetails.vote_avegare = [movieJSON objectForKey:@"vote_average"];
+        
+        
+        // Image
+        NSString *poster_path = [movieJSON objectForKey: @"poster_path"];
+        movieDetails.imageURL = [baseUrl stringByAppendingString: poster_path];
+        
+        // Genre string constructor -----------------------------------
+        NSArray *genresObjectArray = [movieJSON objectForKey: @"genres"];
+        
+        NSString *genreString = NSString.new;
+        NSString *symbol = NSString.new;
+        
+        for (NSDictionary *genreObject in genresObjectArray) {
+            NSString *genre = [genreObject objectForKey: @"name"];
+            
+            
+            if (genreObject != genresObjectArray.lastObject) {
+                symbol = @", ";
+            } else {
+                symbol = @".";
+            }
+            
+            genre = [genre stringByAppendingString: symbol];
+            genreString = [genreString stringByAppendingString: genre];
+        }
+        
+        movieDetails.genres = genreString;
+        
+        //--------------------------------------------
+        
+        NSLog(@"Title: %@", movieDetails.title);
+        NSLog(@"Vote average: %@", movieDetails.vote_avegare);
+        NSLog(@"Genres: %@", movieDetails.genres);
+        NSLog(@"ImageURL: %@", movieDetails.imageURL);
+        NSLog(@"Overview: %@", movieDetails.overview);
+        
+    }] resume];
     
     
-    return [[NSString alloc] initWithData:oResponseData encoding:NSUTF8StringEncoding];
 }
 
 @end
+

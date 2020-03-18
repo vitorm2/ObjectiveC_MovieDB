@@ -11,8 +11,4 @@
 
 @implementation Movie
 
-- (void) someFunction {
-    NSLog(@"EXECUTOU FUNCAO");
-}
-
 @end
