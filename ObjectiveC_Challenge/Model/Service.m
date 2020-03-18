@@ -104,9 +104,10 @@ static NSString *const imageBaseURL = @"https://image.tmdb.org/t/p/w500";
         
         @try {
             
+            // JSON Dictionary object array
             NSArray *moviesResultArray = [moviesJSON objectForKey: @"results"];
             
-            
+            // Movie object array
             NSMutableArray *movies = [[NSMutableArray alloc] init];
             
             for (NSDictionary *movie in moviesResultArray) {

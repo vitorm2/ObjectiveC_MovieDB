@@ -11,7 +11,7 @@
 
 @interface Service : NSObject
 
-typedef enum moviesCategoryTypes {
+typedef enum moviesCategoryType {
     POPULAR,
     NOW_PLAYING
 } moviesCategory;
