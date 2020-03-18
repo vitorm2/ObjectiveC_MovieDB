@@ -25,8 +25,18 @@
     
     Service *myService = [[Service alloc] init];
    
-    [myService fetchMovieDetails: 552 completion:^(Movie * movieDetails) {
-        NSLog(movieDetails.title);
+    
+    
+//    [myService fetchMovieDetails: 552 completion:^(Movie * movieDetails) {
+//        NSLog(movieDetails.title);
+//    }];
+    
+    [myService fetchMovies:POPULAR completion:^(NSMutableArray * movies) {
+       
+        for (Movie *indexMovie in movies) {
+            NSLog(indexMovie.title);
+        }
+        
     }];
 }
 

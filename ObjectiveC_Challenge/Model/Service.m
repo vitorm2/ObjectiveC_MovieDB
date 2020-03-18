@@ -73,6 +73,74 @@ static NSString *const imageBaseURL = @"https://image.tmdb.org/t/p/w500";
     
 }
 
+- (void) fetchMovies:(moviesCategory)moviesCategory completion: (void (^)(NSMutableArray*))callback {
+    
+    NSString *movies_GET_URL = [NSString alloc];
+    
+    if (moviesCategory == POPULAR) {
+        movies_GET_URL = @"https://api.themoviedb.org/3/movie/popular";
+    } else if (moviesCategory == NOW_PLAYING) {
+        movies_GET_URL = @"https://api.themoviedb.org/3/movie/now_playing";
+    }
+    
+    NSString *urlString = [NSString stringWithFormat: @"%@?api_key=%@", movies_GET_URL, API_key];
+    NSURL *url = [NSURL URLWithString: urlString];
+    
+    [[NSURLSession.sharedSession dataTaskWithURL:url completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        
+        if (error) {
+            NSLog(@"Request error: %@", error);
+            return;
+        }
+        
+        NSError *err;
+        
+        NSDictionary *moviesJSON = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&err];
+        
+        if (error) {
+            NSLog(@"JSON Serialization Error: %@", error);
+            return;
+        }
+        
+        @try {
+            
+            NSArray *moviesResultArray = [moviesJSON objectForKey: @"results"];
+            
+            
+            NSMutableArray *movies = [[NSMutableArray alloc] init];
+            
+            for (NSDictionary *movie in moviesResultArray) {
+                
+                Movie *currentMovie = [[Movie alloc] init];
+                
+                currentMovie.movieID = [movie objectForKey: @"id"];
+                currentMovie.title = [movie objectForKey: @"original_title"];
+                currentMovie.overview = [movie objectForKey: @"overview"];
+                currentMovie.vote_avegare = [movie objectForKey:@"vote_average"];
+                
+                // Image
+                NSString *poster_path = [movie objectForKey: @"poster_path"];
+                currentMovie.imageURL = [imageBaseURL stringByAppendingString: poster_path];
+                
+                [movies addObject:currentMovie];
+                
+                currentMovie = nil;
+            }
+
+            callback(movies);
+        }
+        
+        @catch ( NSException *e ) {
+            NSLog(@"JSON Parse error: %@", e);
+            return;
+        }
+        
+        
+    }] resume];
+    
+}
+
+
 @end
 
 //        - API fetch string result

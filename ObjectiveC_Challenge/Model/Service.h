@@ -11,6 +11,14 @@
 
 @interface Service : NSObject
 
-- (void)fetchMovieDetails:(int)movieId completion:(void (^)(Movie*))callback;
+typedef enum moviesCategoryTypes {
+    POPULAR,
+    NOW_PLAYING
+} moviesCategory;
+
+
+- (void) fetchMovieDetails:(int)movieId completion:(void (^)(Movie*))callback;
+
+- (void) fetchMovies:(moviesCategory)moviesCategory completion: (void (^)(NSMutableArray*))callback;
 
 @end

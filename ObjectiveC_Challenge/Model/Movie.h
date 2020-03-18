@@ -11,6 +11,7 @@
 
 @interface Movie : NSObject
 
+@property NSNumber *movieID;
 @property NSString *title;
 @property NSString *overview;
 @property NSString *genres;
