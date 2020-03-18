@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		77735C972421959600FAE366 /* SimpleTableCellTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77735C962421959600FAE366 /* SimpleTableCellTableViewCell.m */; };
 		CF9DBE1A241FF6C60009AA1F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CF9DBE19241FF6C60009AA1F /* AppDelegate.m */; };
 		CF9DBE1D241FF6C60009AA1F /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CF9DBE1C241FF6C60009AA1F /* SceneDelegate.m */; };
 		CF9DBE20241FF6C60009AA1F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CF9DBE1F241FF6C60009AA1F /* ViewController.m */; };
@@ -17,6 +18,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		77735C952421959600FAE366 /* SimpleTableCellTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SimpleTableCellTableViewCell.h; sourceTree = "<group>"; };
+		77735C962421959600FAE366 /* SimpleTableCellTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SimpleTableCellTableViewCell.m; sourceTree = "<group>"; };
 		CF9DBE15241FF6C60009AA1F /* ObjectiveC_Challenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ObjectiveC_Challenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF9DBE18241FF6C60009AA1F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		CF9DBE19241FF6C60009AA1F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -42,6 +45,45 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7759A18F242163B300819D2E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		7759A190242163C200819D2E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CF9DBE21241FF6C60009AA1F /* Main.storyboard */,
+				CF9DBE24241FF6CA0009AA1F /* Assets.xcassets */,
+				CF9DBE26241FF6CA0009AA1F /* LaunchScreen.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		7759A191242163CA00819D2E /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				CF9DBE1E241FF6C60009AA1F /* ViewController.h */,
+				CF9DBE1F241FF6C60009AA1F /* ViewController.m */,
+				77735C962421959600FAE366 /* SimpleTableCellTableViewCell.m */,
+				77735C952421959600FAE366 /* SimpleTableCellTableViewCell.h */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		7759A192242163D100819D2E /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				CF9DBE1B241FF6C60009AA1F /* SceneDelegate.h */,
+				CF9DBE1C241FF6C60009AA1F /* SceneDelegate.m */,
+				CF9DBE18241FF6C60009AA1F /* AppDelegate.h */,
+				CF9DBE19241FF6C60009AA1F /* AppDelegate.m */,
+			);
+			path = Support;
+			sourceTree = "<group>";
+		};
 		CF9DBE0C241FF6C60009AA1F = {
 			isa = PBXGroup;
 			children = (
@@ -61,15 +103,10 @@
 		CF9DBE17241FF6C60009AA1F /* ObjectiveC_Challenge */ = {
 			isa = PBXGroup;
 			children = (
-				CF9DBE18241FF6C60009AA1F /* AppDelegate.h */,
-				CF9DBE19241FF6C60009AA1F /* AppDelegate.m */,
-				CF9DBE1B241FF6C60009AA1F /* SceneDelegate.h */,
-				CF9DBE1C241FF6C60009AA1F /* SceneDelegate.m */,
-				CF9DBE1E241FF6C60009AA1F /* ViewController.h */,
-				CF9DBE1F241FF6C60009AA1F /* ViewController.m */,
-				CF9DBE21241FF6C60009AA1F /* Main.storyboard */,
-				CF9DBE24241FF6CA0009AA1F /* Assets.xcassets */,
-				CF9DBE26241FF6CA0009AA1F /* LaunchScreen.storyboard */,
+				7759A18F242163B300819D2E /* Model */,
+				7759A190242163C200819D2E /* View */,
+				7759A191242163CA00819D2E /* Controller */,
+				7759A192242163D100819D2E /* Support */,
 				CF9DBE29241FF6CA0009AA1F /* Info.plist */,
 				CF9DBE2A241FF6CA0009AA1F /* main.m */,
 			);
@@ -148,6 +185,7 @@
 			files = (
 				CF9DBE20241FF6C60009AA1F /* ViewController.m in Sources */,
 				CF9DBE1A241FF6C60009AA1F /* AppDelegate.m in Sources */,
+				77735C972421959600FAE366 /* SimpleTableCellTableViewCell.m in Sources */,
 				CF9DBE2B241FF6CA0009AA1F /* main.m in Sources */,
 				CF9DBE1D241FF6C60009AA1F /* SceneDelegate.m in Sources */,
 			);
