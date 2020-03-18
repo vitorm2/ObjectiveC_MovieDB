@@ -16,6 +16,7 @@
 		CF9DBE2B241FF6CA0009AA1F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CF9DBE2A241FF6CA0009AA1F /* main.m */; };
 		CFB2D944242143A600D0EF1F /* Movie.m in Sources */ = {isa = PBXBuildFile; fileRef = CFB2D943242143A600D0EF1F /* Movie.m */; };
 		CFB2D94724215E3100D0EF1F /* Service.m in Sources */ = {isa = PBXBuildFile; fileRef = CFB2D94624215E3100D0EF1F /* Service.m */; };
+		CFB8BD212421C95700075720 /* NSArray+GenreCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = CFB8BD202421C95700075720 /* NSArray+GenreCategory.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +36,8 @@
 		CFB2D943242143A600D0EF1F /* Movie.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Movie.m; sourceTree = "<group>"; };
 		CFB2D94524215E2500D0EF1F /* Service.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Service.h; sourceTree = "<group>"; };
 		CFB2D94624215E3100D0EF1F /* Service.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Service.m; sourceTree = "<group>"; };
+		CFB8BD1F2421C95700075720 /* NSArray+GenreCategory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSArray+GenreCategory.h"; sourceTree = "<group>"; };
+		CFB8BD202421C95700075720 /* NSArray+GenreCategory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSArray+GenreCategory.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +90,8 @@
 				CFB2D943242143A600D0EF1F /* Movie.m */,
 				CFB2D94524215E2500D0EF1F /* Service.h */,
 				CFB2D94624215E3100D0EF1F /* Service.m */,
+				CFB8BD1F2421C95700075720 /* NSArray+GenreCategory.h */,
+				CFB8BD202421C95700075720 /* NSArray+GenreCategory.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -191,6 +196,7 @@
 				CF9DBE20241FF6C60009AA1F /* ViewController.m in Sources */,
 				CF9DBE1A241FF6C60009AA1F /* AppDelegate.m in Sources */,
 				CFB2D944242143A600D0EF1F /* Movie.m in Sources */,
+				CFB8BD212421C95700075720 /* NSArray+GenreCategory.m in Sources */,
 				CF9DBE2B241FF6CA0009AA1F /* main.m in Sources */,
 				CF9DBE1D241FF6C60009AA1F /* SceneDelegate.m in Sources */,
 				CFB2D94724215E3100D0EF1F /* Service.m in Sources */,

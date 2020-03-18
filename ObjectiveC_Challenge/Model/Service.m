@@ -9,10 +9,12 @@
 #import <Foundation/Foundation.h>
 #import "Service.h"
 #import "Movie.h"
+#import "NSArray+GenreCategory.h"
 
 @implementation Service
 
-- (void) getMovieDetail:(NSString *)movieId {
+
+- (void) fetchMovieDetails:(int)movieId completion:(void (^)(Movie*))callback {
     
     NSString *urlString = @"https://api.themoviedb.org/3/movie/552?api_key=79bb37b9869aa0ed97dc7a23c93d0829";
     NSString *baseUrl = @"https://image.tmdb.org/t/p/w500";
@@ -20,10 +22,6 @@
     NSURL *url = [NSURL URLWithString: urlString];
     
     [[NSURLSession.sharedSession dataTaskWithURL:url completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-        
-        
-//        - API fetch string result
-//        NSString *myString = [[NSString alloc] initWithData: data encoding:NSUTF8StringEncoding];
         
         NSError *err;
         
@@ -40,40 +38,16 @@
         movieDetails.overview = [movieJSON objectForKey: @"overview"];
         movieDetails.vote_avegare = [movieJSON objectForKey:@"vote_average"];
         
-        
         // Image
         NSString *poster_path = [movieJSON objectForKey: @"poster_path"];
         movieDetails.imageURL = [baseUrl stringByAppendingString: poster_path];
         
-        // Genre string constructor -----------------------------------
+        // Genre
         NSArray *genresObjectArray = [movieJSON objectForKey: @"genres"];
+        movieDetails.genres = [genresObjectArray getGenreFullString];
         
-        NSString *genreString = NSString.new;
-        NSString *symbol = NSString.new;
         
-        for (NSDictionary *genreObject in genresObjectArray) {
-            NSString *genre = [genreObject objectForKey: @"name"];
-            
-            
-            if (genreObject != genresObjectArray.lastObject) {
-                symbol = @", ";
-            } else {
-                symbol = @".";
-            }
-            
-            genre = [genre stringByAppendingString: symbol];
-            genreString = [genreString stringByAppendingString: genre];
-        }
-        
-        movieDetails.genres = genreString;
-        
-        //--------------------------------------------
-        
-        NSLog(@"Title: %@", movieDetails.title);
-        NSLog(@"Vote average: %@", movieDetails.vote_avegare);
-        NSLog(@"Genres: %@", movieDetails.genres);
-        NSLog(@"ImageURL: %@", movieDetails.imageURL);
-        NSLog(@"Overview: %@", movieDetails.overview);
+        callback(movieDetails);
         
     }] resume];
     
@@ -82,3 +56,5 @@
 
 @end
 
+//        - API fetch string result
+//        NSString *myString = [[NSString alloc] initWithData: data encoding:NSUTF8StringEncoding];

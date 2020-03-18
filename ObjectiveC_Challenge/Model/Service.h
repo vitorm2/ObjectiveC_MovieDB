@@ -7,10 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Movie.h"
 
+@interface Service : NSObject
 
-@interface Service : NSData
-
-- (void) getMovieDetail:(NSString *)url;
+- (void)fetchMovieDetails:(int)movieId completion:(void (^)(Movie*))callback;
 
 @end

@@ -21,14 +21,13 @@
     [super viewDidLoad];
     
     Movie *myMovie =[[Movie alloc] init];
-    
-//    NSLog(@"movieId: %d", myMovie.videoId);
 
     
     Service *myService = [[Service alloc] init];
    
-    [myService getMovieDetail:@"https://api.themoviedb.org/3/movie/550?api_key=79bb37b9869aa0ed97dc7a23c93d0829"];
-    
+    [myService fetchMovieDetails:500 completion:^(Movie * movieDetails) {
+        NSLog(movieDetails.title);
+    }];
 }
 
 
