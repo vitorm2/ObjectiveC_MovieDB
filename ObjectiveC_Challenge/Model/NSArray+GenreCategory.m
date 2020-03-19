@@ -24,7 +24,7 @@
         if (genreObject != self.lastObject) {
             symbol = @", ";
         } else {
-            symbol = @".";
+            symbol = @"";
         }
         
         genre = [genre stringByAppendingString: symbol];
