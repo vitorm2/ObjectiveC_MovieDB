@@ -7,8 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7707437C2422CACB00E70F57 /* CustomTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7707437A2422CACB00E70F57 /* CustomTableViewCell.m */; };
-		7707437D2422CACB00E70F57 /* CustomTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7707437B2422CACB00E70F57 /* CustomTableViewCell.xib */; };
+		775BD41B2422F67D00AEA1CE /* CustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 775BD41A2422F67D00AEA1CE /* CustomCell.m */; };
 		CF9DBE1A241FF6C60009AA1F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CF9DBE19241FF6C60009AA1F /* AppDelegate.m */; };
 		CF9DBE1D241FF6C60009AA1F /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CF9DBE1C241FF6C60009AA1F /* SceneDelegate.m */; };
 		CF9DBE20241FF6C60009AA1F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CF9DBE1F241FF6C60009AA1F /* ViewController.m */; };
@@ -22,9 +21,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		770743792422CACB00E70F57 /* CustomTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomTableViewCell.h; sourceTree = "<group>"; };
-		7707437A2422CACB00E70F57 /* CustomTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomTableViewCell.m; sourceTree = "<group>"; };
-		7707437B2422CACB00E70F57 /* CustomTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomTableViewCell.xib; sourceTree = "<group>"; };
+		775BD4192422F67D00AEA1CE /* CustomCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomCell.h; sourceTree = "<group>"; };
+		775BD41A2422F67D00AEA1CE /* CustomCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomCell.m; sourceTree = "<group>"; };
 		CF9DBE15241FF6C60009AA1F /* ObjectiveC_Challenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ObjectiveC_Challenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF9DBE18241FF6C60009AA1F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		CF9DBE19241FF6C60009AA1F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -56,16 +54,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		770743732422C92300E70F57 /* CustomCell */ = {
-			isa = PBXGroup;
-			children = (
-				770743792422CACB00E70F57 /* CustomTableViewCell.h */,
-				7707437A2422CACB00E70F57 /* CustomTableViewCell.m */,
-				7707437B2422CACB00E70F57 /* CustomTableViewCell.xib */,
-			);
-			path = CustomCell;
-			sourceTree = "<group>";
-		};
 		CF9DBE0C241FF6C60009AA1F = {
 			isa = PBXGroup;
 			children = (
@@ -85,7 +73,6 @@
 		CF9DBE17241FF6C60009AA1F /* ObjectiveC_Challenge */ = {
 			isa = PBXGroup;
 			children = (
-				770743732422C92300E70F57 /* CustomCell */,
 				CFB2D93E2421419E00D0EF1F /* Model */,
 				CFB2D940242141D100D0EF1F /* View */,
 				CFB2D93F242141AA00D0EF1F /* Controller */,
@@ -112,6 +99,8 @@
 		CFB2D93F242141AA00D0EF1F /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				775BD41A2422F67D00AEA1CE /* CustomCell.m */,
+				775BD4192422F67D00AEA1CE /* CustomCell.h */,
 				CF9DBE1E241FF6C60009AA1F /* ViewController.h */,
 				CF9DBE1F241FF6C60009AA1F /* ViewController.m */,
 			);
@@ -198,7 +187,6 @@
 			files = (
 				CF9DBE28241FF6CA0009AA1F /* LaunchScreen.storyboard in Resources */,
 				CF9DBE25241FF6CA0009AA1F /* Assets.xcassets in Resources */,
-				7707437D2422CACB00E70F57 /* CustomTableViewCell.xib in Resources */,
 				CF9DBE23241FF6C60009AA1F /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -212,11 +200,11 @@
 			files = (
 				CF9DBE20241FF6C60009AA1F /* ViewController.m in Sources */,
 				CF9DBE1A241FF6C60009AA1F /* AppDelegate.m in Sources */,
+				775BD41B2422F67D00AEA1CE /* CustomCell.m in Sources */,
 				CFB2D944242143A600D0EF1F /* Movie.m in Sources */,
 				CFB8BD212421C95700075720 /* NSArray+GenreCategory.m in Sources */,
 				CF9DBE2B241FF6CA0009AA1F /* main.m in Sources */,
 				CF9DBE1D241FF6C60009AA1F /* SceneDelegate.m in Sources */,
-				7707437C2422CACB00E70F57 /* CustomTableViewCell.m in Sources */,
 				CFB2D94724215E3100D0EF1F /* Service.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
