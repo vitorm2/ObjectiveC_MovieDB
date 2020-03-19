@@ -50,28 +50,53 @@
 
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
-    
-    static NSString *simpleTableIdentifier = @"SimpleTableItem";
-    
-    TableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
-    
-    cell.movieTitle.text = _popularMovies[indexPath.row].title;
-
-    
-    [_myService fetchImageData:_popularMovies[indexPath.row].imageURL completion:^(NSData * data){
-
-        dispatch_async(dispatch_get_main_queue(), ^{
-            cell.movieImage.image = [[UIImage alloc] initWithData:data];
+  
+        static NSString *simpleTableIdentifier = @"SimpleTableItem";
+        
+        TableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
+        
+      if (indexPath.section == 0) {
+        cell.movieTitle.text = _popularMovies[indexPath.row].title;
+      } else {
+          cell.movieTitle.text = @"VAMO MEU";
+      }
+        
+        [_myService fetchImageData:_popularMovies[indexPath.row].imageURL completion:^(NSData * data){
             
-        });
-    }];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                cell.movieImage.image = [[UIImage alloc] initWithData:data];
+                
+            });
+        }];
+        
+        return cell;
     
-    return cell;
     
 }
 
+
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return _popularMovies.count;
+    
+    if (section == 0) {
+        return 2;
+    } else {
+        return _popularMovies.count;
+    }
+}
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    if (section == 0) {
+        return @"Popular Movies";
+    } else {
+        return @"Now Playing Movies";
+    }
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 2;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSLog(@"CELL: %d, SECTION: %d", indexPath.row, indexPath.section);
 }
 
 
