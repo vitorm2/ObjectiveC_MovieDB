@@ -22,7 +22,7 @@
     [super viewDidLoad];
     
 //    Movie *myMovie =[[Movie alloc] init];
-    Service *myService = [[Service alloc] init];
+    _myService = [[Service alloc] init];
    
     self.navigationItem.title = @"Movies";
     self.navigationController.navigationBar.prefersLargeTitles = YES;
@@ -34,7 +34,7 @@
 //        NSLog(movieDetails.title);
 //    }];
     
-    [myService fetchMovies:POPULAR completion:^(NSMutableArray * movies) {
+    [_myService fetchMovies:POPULAR completion:^(NSMutableArray * movies) {
        
         self->_popularMovies = movies;
         
@@ -56,7 +56,16 @@
     TableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
     
     cell.movieTitle.text = _popularMovies[indexPath.row].title;
-    cell.movieImage.image = [UIImage imageNamed:@"lion"];
+
+    
+    [_myService fetchImageData:_popularMovies[indexPath.row].imageURL completion:^(NSData * data){
+
+        dispatch_async(dispatch_get_main_queue(), ^{
+            cell.movieImage.image = [[UIImage alloc] initWithData:data];
+            
+        });
+    }];
+    
     return cell;
     
 }
