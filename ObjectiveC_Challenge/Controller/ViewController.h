@@ -8,12 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "Movie.h"
+#import "Service.h"
 
 @interface ViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UITableView *popularMovies_tableView;
 @property NSArray<Movie *> *popularMovies;
-
+@property Service *myService;
 
 @end
 

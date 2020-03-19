@@ -122,7 +122,6 @@ static NSString *const imageBaseURL = @"https://image.tmdb.org/t/p/w500";
                 // Image
                 NSString *poster_path = [movie objectForKey: @"poster_path"];
                 currentMovie.imageURL = [imageBaseURL stringByAppendingString: poster_path];
-                
                 [movies addObject:currentMovie];
                 
                 currentMovie = nil;
@@ -138,6 +137,21 @@ static NSString *const imageBaseURL = @"https://image.tmdb.org/t/p/w500";
         
         
     }] resume];
+    
+}
+
+
+- (void)fetchImageData:(NSString*) imageURL completion:(void (^)(NSData *))callback {
+    
+      NSURL *imgURL = [NSURL URLWithString: imageURL];
+
+      [[NSURLSession.sharedSession dataTaskWithURL:(imgURL) completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+          if (!error) {
+              callback(data);
+          }else{
+              NSLog(@"IMAGE FETCH ERROR: %@",error);
+          }
+      }] resume] ;
     
 }
 

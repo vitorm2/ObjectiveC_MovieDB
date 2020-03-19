@@ -17,6 +17,9 @@ typedef enum moviesCategoryType {
 } moviesCategory;
 
 
+
+- (void) fetchImageData:(NSString* )imageURL completion:(void (^)(NSData *))callback;
+
 - (void) fetchMovieDetails:(int)movieId completion:(void (^)(Movie*))callback;
 
 - (void) fetchMovies:(moviesCategory)moviesCategory completion: (void (^)(NSMutableArray*))callback;
