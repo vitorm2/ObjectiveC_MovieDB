@@ -7,6 +7,7 @@
 //
 
 #import "MovieDetailController.h"
+#import "Movie.h"
 
 @interface MovieDetailController ()
 
@@ -17,6 +18,19 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    _movieDetailImage.layer.cornerRadius = 10;
+    
+    _movieDetailImage.image = _movie.movieImage;
+    _movieTitleLabel.text = _movie.title;
+    _movieGenreLabel.text = _movie.genres;
+    _movieVoteAverageLabel.text = [_movie.vote_avegare stringValue];
+    _movieOverviewTextView.text = _movie.overview;
+    
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    self.navigationController.navigationBar.prefersLargeTitles = NO;
 }
 
 @end

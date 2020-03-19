@@ -24,9 +24,6 @@
     
 //    Movie *myMovie =[[Movie alloc] init];
     _myService = [[Service alloc] init];
-   
-    self.navigationItem.title = @"Movies";
-    self.navigationController.navigationBar.prefersLargeTitles = YES;
     
     _popularMovies_tableView.dataSource = self;
     _popularMovies_tableView.delegate = self;
@@ -45,6 +42,14 @@
         
     }];
 }
+
+
+
+- (void)viewWillAppear:(BOOL)animated {
+    self.navigationItem.title = @"Movies";
+    self.navigationController.navigationBar.prefersLargeTitles = YES;
+}
+
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(Movie *)sender {
 
@@ -70,13 +75,18 @@
           cell.movieTitle.text = @"VAMO MEU";
       }
         
+    
+    if (_popularMovies[indexPath.row].movieImage == nil) {
+    
         [_myService fetchImageData:_popularMovies[indexPath.row].imageURL completion:^(NSData * data){
-            
             dispatch_async(dispatch_get_main_queue(), ^{
                 cell.movieImage.image = [[UIImage alloc] initWithData:data];
-                
+                self->_popularMovies[indexPath.row].movieImage = cell.movieImage.image;
             });
         }];
+    } else {
+        cell.movieImage.image = _popularMovies[indexPath.row].movieImage;
+    }
         
         return cell;
     
@@ -106,8 +116,15 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    [self performSegueWithIdentifier:@"movieDetailSegue" sender: _popularMovies[indexPath.row]];
-//    NSLog(@"CELL: %d, SECTION: %d", indexPath.row, indexPath.section);
+    
+    NSNumber *movieID = _popularMovies[indexPath.row].movieID;
+    [_myService fetchMovieDetails:movieID completion:^(Movie * movie) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            movie.movieImage = self->_popularMovies[indexPath.row].movieImage;
+            [self performSegueWithIdentifier:@"movieDetailSegue" sender: movie];
+        });
+    }];
+    
 }
 
 

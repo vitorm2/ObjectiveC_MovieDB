@@ -19,11 +19,11 @@
 static NSString *const API_key = @"79bb37b9869aa0ed97dc7a23c93d0829";
 static NSString *const imageBaseURL = @"https://image.tmdb.org/t/p/w500";
 
-- (void) fetchMovieDetails:(int)movieId completion:(void (^)(Movie*))callback {
+- (void) fetchMovieDetails:(NSNumber* )movieId completion:(void (^)(Movie*))callback {
 
     NSString *movieDetails_GET_URL = @"https://api.themoviedb.org/3/movie/";
     
-    NSString *urlString = [NSString stringWithFormat: @"%@%d?api_key=%@", movieDetails_GET_URL,  movieId, API_key];
+    NSString *urlString = [NSString stringWithFormat: @"%@%@?api_key=%@", movieDetails_GET_URL,  movieId, API_key];
     NSURL *url = [NSURL URLWithString: urlString];
     
     [[NSURLSession.sharedSession dataTaskWithURL:url completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
