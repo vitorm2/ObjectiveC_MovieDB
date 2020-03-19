@@ -7,8 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Movie.h"
 
-@interface ViewController : UIViewController
+@interface ViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+
+@property (weak, nonatomic) IBOutlet UITableView *popularMovies_tableView;
+@property NSArray<Movie *> *popularMovies;
 
 
 @end

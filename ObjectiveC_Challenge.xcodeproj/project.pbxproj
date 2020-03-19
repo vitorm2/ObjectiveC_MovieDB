@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		775BD41B2422F67D00AEA1CE /* CustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 775BD41A2422F67D00AEA1CE /* CustomCell.m */; };
+		CF910AA72423C042002FA1CE /* TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CF910AA52423C042002FA1CE /* TableViewCell.m */; };
 		CF9DBE1A241FF6C60009AA1F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CF9DBE19241FF6C60009AA1F /* AppDelegate.m */; };
 		CF9DBE1D241FF6C60009AA1F /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CF9DBE1C241FF6C60009AA1F /* SceneDelegate.m */; };
 		CF9DBE20241FF6C60009AA1F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CF9DBE1F241FF6C60009AA1F /* ViewController.m */; };
@@ -21,8 +21,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		775BD4192422F67D00AEA1CE /* CustomCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomCell.h; sourceTree = "<group>"; };
-		775BD41A2422F67D00AEA1CE /* CustomCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomCell.m; sourceTree = "<group>"; };
+		CF910AA52423C042002FA1CE /* TableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TableViewCell.m; path = ObjectiveC_Challenge/Controller/TableViewCell.m; sourceTree = SOURCE_ROOT; };
+		CF910AA62423C042002FA1CE /* TableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TableViewCell.h; path = ObjectiveC_Challenge/Controller/TableViewCell.h; sourceTree = SOURCE_ROOT; };
 		CF9DBE15241FF6C60009AA1F /* ObjectiveC_Challenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ObjectiveC_Challenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF9DBE18241FF6C60009AA1F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		CF9DBE19241FF6C60009AA1F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -99,8 +99,6 @@
 		CFB2D93F242141AA00D0EF1F /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				775BD41A2422F67D00AEA1CE /* CustomCell.m */,
-				775BD4192422F67D00AEA1CE /* CustomCell.h */,
 				CF9DBE1E241FF6C60009AA1F /* ViewController.h */,
 				CF9DBE1F241FF6C60009AA1F /* ViewController.m */,
 			);
@@ -110,6 +108,8 @@
 		CFB2D940242141D100D0EF1F /* View */ = {
 			isa = PBXGroup;
 			children = (
+				CF910AA62423C042002FA1CE /* TableViewCell.h */,
+				CF910AA52423C042002FA1CE /* TableViewCell.m */,
 				CF9DBE24241FF6CA0009AA1F /* Assets.xcassets */,
 				CF9DBE26241FF6CA0009AA1F /* LaunchScreen.storyboard */,
 				CF9DBE21241FF6C60009AA1F /* Main.storyboard */,
@@ -200,8 +200,8 @@
 			files = (
 				CF9DBE20241FF6C60009AA1F /* ViewController.m in Sources */,
 				CF9DBE1A241FF6C60009AA1F /* AppDelegate.m in Sources */,
-				775BD41B2422F67D00AEA1CE /* CustomCell.m in Sources */,
 				CFB2D944242143A600D0EF1F /* Movie.m in Sources */,
+				CF910AA72423C042002FA1CE /* TableViewCell.m in Sources */,
 				CFB8BD212421C95700075720 /* NSArray+GenreCategory.m in Sources */,
 				CF9DBE2B241FF6CA0009AA1F /* main.m in Sources */,
 				CF9DBE1D241FF6C60009AA1F /* SceneDelegate.m in Sources */,
