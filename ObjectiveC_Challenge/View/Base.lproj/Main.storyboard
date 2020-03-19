@@ -79,11 +79,28 @@
                     <navigationItem key="navigationItem" id="o3J-lZ-LlK"/>
                     <connections>
                         <outlet property="popularMovies_tableView" destination="nNz-kF-Q92" id="wP4-rt-hMf"/>
+                        <segue destination="sLD-AL-DN8" kind="show" identifier="movieDetailSegue" id="0wX-AS-Njl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1047.8260869565217" y="107.8125"/>
+        </scene>
+        <!--Movie Detail Controller-->
+        <scene sceneID="bKC-h5-043">
+            <objects>
+                <viewController id="sLD-AL-DN8" customClass="MovieDetailController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="PLu-pk-DTS">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="7MZ-mf-MTf"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Pxm-yz-B3k"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5y8-eh-Vj3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1919" y="103"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="RKS-1Y-Bgo">

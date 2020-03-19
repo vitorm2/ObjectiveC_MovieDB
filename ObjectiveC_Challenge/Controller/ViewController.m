@@ -11,6 +11,7 @@
 #import "Movie.h"
 #import "Service.h"
 #import "TableViewCell.h"
+#import "MovieDetailController.h"
 
 @interface ViewController ()
 
@@ -45,7 +46,15 @@
     }];
 }
 
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(Movie *)sender {
 
+    if ([[segue identifier] isEqualToString:@"movieDetailSegue"]) {
+        
+        MovieDetailController *vc = [segue destinationViewController];
+        vc.movie = sender;
+        
+    }
+}
 
 
 
@@ -96,7 +105,9 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"CELL: %d, SECTION: %d", indexPath.row, indexPath.section);
+    
+    [self performSegueWithIdentifier:@"movieDetailSegue" sender: _popularMovies[indexPath.row]];
+//    NSLog(@"CELL: %d, SECTION: %d", indexPath.row, indexPath.section);
 }
 
 

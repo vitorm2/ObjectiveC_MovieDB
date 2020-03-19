@@ -23,16 +23,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "1940B431-6B4A-4656-81EC-3D47AF865A66"
+            uuid = "3D319235-6949-4627-AD73-F859D6C6A05E"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ObjectiveC_Challenge/Controller/ViewController.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "99"
-            endingLineNumber = "99"
-            landmarkName = "-tableView:didSelectRowAtIndexPath:"
+            startingLineNumber = "51"
+            endingLineNumber = "51"
+            landmarkName = "-prepareForSegue:sender:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		CF910AA72423C042002FA1CE /* TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CF910AA52423C042002FA1CE /* TableViewCell.m */; };
+		CF910AB02423F861002FA1CE /* MovieDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = CF910AAF2423F861002FA1CE /* MovieDetailController.m */; };
 		CF9DBE1A241FF6C60009AA1F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CF9DBE19241FF6C60009AA1F /* AppDelegate.m */; };
 		CF9DBE1D241FF6C60009AA1F /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CF9DBE1C241FF6C60009AA1F /* SceneDelegate.m */; };
 		CF9DBE20241FF6C60009AA1F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CF9DBE1F241FF6C60009AA1F /* ViewController.m */; };
@@ -23,6 +24,8 @@
 /* Begin PBXFileReference section */
 		CF910AA52423C042002FA1CE /* TableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TableViewCell.m; path = ObjectiveC_Challenge/Controller/TableViewCell.m; sourceTree = SOURCE_ROOT; };
 		CF910AA62423C042002FA1CE /* TableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TableViewCell.h; path = ObjectiveC_Challenge/Controller/TableViewCell.h; sourceTree = SOURCE_ROOT; };
+		CF910AAE2423F861002FA1CE /* MovieDetailController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MovieDetailController.h; sourceTree = "<group>"; };
+		CF910AAF2423F861002FA1CE /* MovieDetailController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MovieDetailController.m; sourceTree = "<group>"; };
 		CF9DBE15241FF6C60009AA1F /* ObjectiveC_Challenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ObjectiveC_Challenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF9DBE18241FF6C60009AA1F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		CF9DBE19241FF6C60009AA1F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -101,6 +104,8 @@
 			children = (
 				CF9DBE1E241FF6C60009AA1F /* ViewController.h */,
 				CF9DBE1F241FF6C60009AA1F /* ViewController.m */,
+				CF910AAE2423F861002FA1CE /* MovieDetailController.h */,
+				CF910AAF2423F861002FA1CE /* MovieDetailController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -200,6 +205,7 @@
 			files = (
 				CF9DBE20241FF6C60009AA1F /* ViewController.m in Sources */,
 				CF9DBE1A241FF6C60009AA1F /* AppDelegate.m in Sources */,
+				CF910AB02423F861002FA1CE /* MovieDetailController.m in Sources */,
 				CFB2D944242143A600D0EF1F /* Movie.m in Sources */,
 				CF910AA72423C042002FA1CE /* TableViewCell.m in Sources */,
 				CFB8BD212421C95700075720 /* NSArray+GenreCategory.m in Sources */,
