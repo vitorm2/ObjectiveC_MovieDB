@@ -14,6 +14,7 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *popularMovies_tableView;
 @property NSArray<Movie *> *popularMovies;
+@property NSArray<Movie *> *nowPlayingMovies;
 @property Service *myService;
 
 @end
