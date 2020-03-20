@@ -18,6 +18,8 @@
 @property Service *myService;
 
 - (void) setupNavigationBar;
+- (void) fetchImage: (NSString *)imageURL completion:(void (^)(UIImage*))callback;
+
 
 @end
 

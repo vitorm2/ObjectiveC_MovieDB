@@ -22,15 +22,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    //    Movie *myMovie =[[Movie alloc] init];
-    _myService = [[Service alloc] init];
+    _myService = Service.new;
     
     _popularMovies_tableView.dataSource = self;
     _popularMovies_tableView.delegate = self;
-    
-    //    [myService fetchMovieDetails: 552 completion:^(Movie * movieDetails) {
-    //        NSLog(movieDetails.title);
-    //    }];
     
     [_myService fetchMovies:POPULAR completion:^(NSMutableArray * movies) {
         
@@ -43,14 +38,14 @@
     }];
     
     [_myService fetchMovies:NOW_PLAYING completion:^(NSMutableArray * movies) {
-           
-           self->_nowPlayingMovies = movies;
-           
-           dispatch_async(dispatch_get_main_queue(), ^{
-               [self->_popularMovies_tableView reloadData];
-           });
-           
-       }];
+        
+        self->_nowPlayingMovies = movies;
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self->_popularMovies_tableView reloadData];
+        });
+        
+    }];
     
     
     
@@ -91,8 +86,12 @@
     
     static NSString *simpleTableIdentifier = @"SimpleTableItem";
     
+    
+    
     TableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
-    //popular
+
+    
+    // Popular Section
     if (indexPath.section == 0) {
         
         cell.movieTitle.text = _popularMovies[indexPath.row].title;
@@ -103,16 +102,17 @@
         
         if (_popularMovies[indexPath.row].movieImage == nil) {
             
-            [_myService fetchImageData:_popularMovies[indexPath.row].imageURL completion:^(NSData * data){
+            [self fetchImage:_popularMovies[indexPath.row].imageURL completion:^(UIImage * image) {
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    cell.movieImage.image = [[UIImage alloc] initWithData:data];
-                    self->_popularMovies[indexPath.row].movieImage = cell.movieImage.image;
+                    self->_popularMovies[indexPath.row].movieImage = image;
                 });
             }];
-        } else {
-            cell.movieImage.image = _popularMovies[indexPath.row].movieImage;
-        }
+        } else { cell.movieImage.image = _popularMovies[indexPath.row].movieImage; }
         
+        
+        
+        
+    // Now Playing Section
     } else if (indexPath.section == 1){
    
         
@@ -120,7 +120,6 @@
     [self bubbleSort: nowPlayingMoviesOrdened];
 
     
-        
         cell.movieTitle.text = _nowPlayingMovies[indexPath.row].title;
         cell.movieOverview.text = _nowPlayingMovies[indexPath.row].overview;
         cell.movieImage.layer.cornerRadius = 10;
@@ -129,25 +128,24 @@
         
         
         if (_nowPlayingMovies[indexPath.row].movieImage == nil) {
-            
-            [_myService fetchImageData:_nowPlayingMovies[indexPath.row].imageURL completion:^(NSData * data){
+            [self fetchImage:_nowPlayingMovies[indexPath.row].imageURL completion:^(UIImage * image) {
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    cell.movieImage.image = [[UIImage alloc] initWithData:data];
-                    self->_nowPlayingMovies[indexPath.row].movieImage = cell.movieImage.image;
+                    self->_nowPlayingMovies[indexPath.row].movieImage = image;
                 });
             }];
-        } else {
-            cell.movieImage.image = _nowPlayingMovies[indexPath.row].movieImage;
-        }
+        } else { cell.movieImage.image = _nowPlayingMovies[indexPath.row].movieImage; }
     }
     
-    
-    
-    
-    //
     return cell;
     
     
+}
+
+- (void)fetchImage:(NSString *)imageURL completion:(void (^)(UIImage *))callback {
+    [_myService fetchImageData:imageURL completion:^(NSData * data){
+        UIImage *myImage = [[UIImage alloc] initWithData:data];
+        callback(myImage);
+    }];
 }
 
 - (NSArray *)bubbleSort:(NSMutableArray *)sortedArray
@@ -184,7 +182,7 @@
     if (section == 0) {
         return @"Popular Movies";
     } else {
-        return @"Now Playing Movies";
+        return @"Now Playing";
     }
 }
 
@@ -202,16 +200,25 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    
-    NSNumber *movieID = _popularMovies[indexPath.row].movieID;
-    [_myService fetchMovieDetails:movieID completion:^(Movie * movie) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            movie.movieImage = self->_popularMovies[indexPath.row].movieImage;
-            [self performSegueWithIdentifier:@"movieDetailSegue" sender: movie];
-        });
-    }];
-    
+    if (indexPath.section == 0) {
+        NSNumber *movieID = _popularMovies[indexPath.row].movieID;
+        [_myService fetchMovieDetails:movieID completion:^(Movie * movie) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                movie.movieImage = self->_popularMovies[indexPath.row].movieImage;
+                [self performSegueWithIdentifier:@"movieDetailSegue" sender: movie];
+            });
+        }];
+    } else {
+        NSNumber *movieID = _nowPlayingMovies[indexPath.row].movieID;
+        [_myService fetchMovieDetails:movieID completion:^(Movie * movie) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                movie.movieImage = self->_nowPlayingMovies[indexPath.row].movieImage;
+                [self performSegueWithIdentifier:@"movieDetailSegue" sender: movie];
+            });
+        }];
+    }
 }
+
 
 
 @end
