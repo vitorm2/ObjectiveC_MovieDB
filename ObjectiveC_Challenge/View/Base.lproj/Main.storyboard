@@ -15,25 +15,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="FCP-T3-OGo">
-                                <rect key="frame" x="21" y="88" width="372" height="34"/>
-                                <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="magnifyingglass" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="FDr-8U-A9G">
-                                        <rect key="frame" x="0.0" y="1" width="20" height="32"/>
-                                    </imageView>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ful-jw-Jmc">
-                                        <rect key="frame" x="21" y="0.0" width="351" height="34"/>
-                                        <color key="backgroundColor" red="0.92160683870000004" green="0.92147940399999995" blue="0.92549186939999994" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
-                                </subviews>
-                            </stackView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oWe-Ur-8qh">
-                                <rect key="frame" x="0.0" y="130" width="414" height="732"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <subviews>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="nNz-kF-Q92">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="732"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="774"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SimpleTableItem" rowHeight="158" id="0mc-0z-W02" customClass="TableViewCell">
@@ -128,7 +114,6 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="nNz-kF-Q92" secondAttribute="trailing" id="5qA-VE-gIz"/>
-                                    <constraint firstItem="nNz-kF-Q92" firstAttribute="top" secondItem="oWe-Ur-8qh" secondAttribute="top" id="96C-Ej-KXb"/>
                                     <constraint firstAttribute="bottom" secondItem="nNz-kF-Q92" secondAttribute="bottom" id="Wdd-fR-zG7"/>
                                     <constraint firstItem="nNz-kF-Q92" firstAttribute="leading" secondItem="oWe-Ur-8qh" secondAttribute="leading" id="qwC-nJ-gx0"/>
                                     <constraint firstItem="nNz-kF-Q92" firstAttribute="centerX" secondItem="oWe-Ur-8qh" secondAttribute="centerX" id="uJ2-8n-g9J"/>
@@ -137,15 +122,11 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="FCP-T3-OGo" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="12L-Du-dg3"/>
-                            <constraint firstItem="FDr-8U-A9G" firstAttribute="height" secondItem="oWe-Ur-8qh" secondAttribute="height" multiplier="0.0464481" id="1Hp-UB-tQc"/>
                             <constraint firstItem="oWe-Ur-8qh" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="9Li-jl-z31"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="oWe-Ur-8qh" secondAttribute="trailing" id="IgC-SV-Jp6"/>
-                            <constraint firstItem="Ful-jw-Jmc" firstAttribute="height" secondItem="oWe-Ur-8qh" secondAttribute="height" multiplier="0.0464481" id="MQX-S4-M6n"/>
-                            <constraint firstItem="FCP-T3-OGo" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="21" id="RxY-xb-BSY"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="FCP-T3-OGo" secondAttribute="trailing" constant="21" id="awJ-PT-rnC"/>
+                            <constraint firstItem="oWe-Ur-8qh" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="f5s-RQ-RgZ"/>
+                            <constraint firstItem="nNz-kF-Q92" firstAttribute="top" secondItem="oWe-Ur-8qh" secondAttribute="top" id="mLQ-sc-qSm"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="oWe-Ur-8qh" secondAttribute="bottom" id="ngM-Y5-xbu"/>
-                            <constraint firstItem="oWe-Ur-8qh" firstAttribute="top" secondItem="FCP-T3-OGo" secondAttribute="bottom" constant="8" symbolic="YES" id="tsV-hQ-Jjt"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -291,7 +272,6 @@
     </scenes>
     <resources>
         <image name="Star Icon" width="17" height="16.5"/>
-        <image name="magnifyingglass" catalog="system" width="64" height="56"/>
         <image name="star" catalog="system" width="64" height="58"/>
     </resources>
 </document>

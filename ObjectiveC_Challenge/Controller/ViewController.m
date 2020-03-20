@@ -56,12 +56,25 @@
     
 }
 
-
-
 - (void)viewWillAppear:(BOOL)animated {
+    [self setupNavigationBar];
+}
+
+- (void)setupNavigationBar {
     self.navigationItem.title = @"Movies";
+    
+    UISearchController *searchController =   UISearchController.new;
+//    searchController.searchResultsUpdater = resultsViewController
+    searchController.obscuresBackgroundDuringPresentation = true;
+//    searchController.delegate = resultsViewController
+//    searchController.searchBar.delegate = resultsViewController
+    self.navigationItem.searchController = searchController;
+    self.navigationItem.hidesSearchBarWhenScrolling = false;
     self.navigationController.navigationBar.prefersLargeTitles = YES;
 }
+
+
+
 
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(Movie *)sender {

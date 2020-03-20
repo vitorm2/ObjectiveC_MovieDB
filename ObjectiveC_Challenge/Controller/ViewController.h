@@ -17,5 +17,7 @@
 @property NSArray<Movie *> *nowPlayingMovies;
 @property Service *myService;
 
+- (void) setupNavigationBar;
+
 @end
 
