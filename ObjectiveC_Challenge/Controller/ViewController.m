@@ -88,6 +88,18 @@
         NSString *rateStr = [_popularMovies[indexPath.row].vote_avegare stringValue];
         cell.movieRate.text = rateStr;
         
+        if (_popularMovies[indexPath.row].movieImage == nil) {
+            
+            [_myService fetchImageData:_popularMovies[indexPath.row].imageURL completion:^(NSData * data){
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    cell.movieImage.image = [[UIImage alloc] initWithData:data];
+                    self->_popularMovies[indexPath.row].movieImage = cell.movieImage.image;
+                });
+            }];
+        } else {
+            cell.movieImage.image = _popularMovies[indexPath.row].movieImage;
+        }
+        
     } else if (indexPath.section == 1){
    
         
@@ -97,28 +109,27 @@
     
         
         cell.movieTitle.text = _nowPlayingMovies[indexPath.row].title;
-       // cell.movieTitle.text = [nowPlayingMoviesOrdened[indexPath.row] title];
         cell.movieOverview.text = _nowPlayingMovies[indexPath.row].overview;
         cell.movieImage.layer.cornerRadius = 10;
         NSString *rateStr = [_nowPlayingMovies[indexPath.row].vote_avegare stringValue];
         cell.movieRate.text = rateStr;
         
         
-        
+        if (_nowPlayingMovies[indexPath.row].movieImage == nil) {
+            
+            [_myService fetchImageData:_nowPlayingMovies[indexPath.row].imageURL completion:^(NSData * data){
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    cell.movieImage.image = [[UIImage alloc] initWithData:data];
+                    self->_nowPlayingMovies[indexPath.row].movieImage = cell.movieImage.image;
+                });
+            }];
+        } else {
+            cell.movieImage.image = _nowPlayingMovies[indexPath.row].movieImage;
+        }
     }
     
     
-    if (_popularMovies[indexPath.row].movieImage == nil) {
-        
-        [_myService fetchImageData:_popularMovies[indexPath.row].imageURL completion:^(NSData * data){
-            dispatch_async(dispatch_get_main_queue(), ^{
-                cell.movieImage.image = [[UIImage alloc] initWithData:data];
-                self->_popularMovies[indexPath.row].movieImage = cell.movieImage.image;
-            });
-        }];
-    } else {
-        cell.movieImage.image = _popularMovies[indexPath.row].movieImage;
-    }
+    
     
     //
     return cell;
