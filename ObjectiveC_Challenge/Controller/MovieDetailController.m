@@ -7,6 +7,7 @@
 //
 
 #import "MovieDetailController.h"
+#import "Service.h"
 #import "Movie.h"
 
 @interface MovieDetailController ()
@@ -17,16 +18,22 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
     
-    _movieDetailImage.layer.cornerRadius = 10;
+    Service *myService = Service.new;
     
-    _movieDetailImage.image = _movie.movieImage;
-    _movieTitleLabel.text = _movie.title;
-    _movieGenreLabel.text = _movie.genres;
-    _movieVoteAverageLabel.text = [_movie.vote_avegare stringValue];
-    _movieOverviewTextView.text = _movie.overview;
-    
+    [myService fetchMovieDetails:_movieID completion:^(Movie * movie) {
+        self.movie = movie;
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+             self.movieDetailImage.layer.cornerRadius = 10;
+            self.movieDetailImage.image = self.movie.movieImage;
+            self.movieTitleLabel.text = self.movie.title;
+            self.movieGenreLabel.text = self.movie.genres;
+            self.movieVoteAverageLabel.text = [NSString stringWithFormat:@"%.01f", self.movie.vote_avegare.doubleValue];
+            self.movieOverviewTextView.text = self.movie.overview;
+        });
+    }];
+      
 }
 
 - (void)viewWillAppear:(BOOL)animated {
