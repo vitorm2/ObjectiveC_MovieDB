@@ -132,7 +132,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="o3J-lZ-LlK"/>
                     <connections>
-                        <outlet property="popularMovies_tableView" destination="nNz-kF-Q92" id="wP4-rt-hMf"/>
+                        <outlet property="movies_mainTableView" destination="nNz-kF-Q92" id="wP4-rt-hMf"/>
                         <segue destination="sLD-AL-DN8" kind="show" identifier="movieDetailSegue" id="0wX-AS-Njl"/>
                     </connections>
                 </viewController>
@@ -150,11 +150,15 @@
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="pTC-G8-Q6q">
                                 <rect key="frame" x="21" y="106" width="128" height="194"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="194" id="9Ys-kh-QLu"/>
+                                    <constraint firstAttribute="width" constant="128" id="aLb-j3-Yrj"/>
+                                </constraints>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="D9H-on-iZo">
                                 <rect key="frame" x="163" y="178" width="230" height="109"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The Lion King" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" minimumScaleFactor="0.69999999999999996" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="g07-QJ-gwH">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" minimumScaleFactor="0.69999999999999996" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="g07-QJ-gwH">
                                         <rect key="frame" x="0.0" y="0.0" width="230" height="39"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="39" id="DCi-1r-0PB"/>
@@ -163,7 +167,7 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Adventure, Animation, Family, Drama, Action." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WR4-Vc-13w">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WR4-Vc-13w">
                                         <rect key="frame" x="0.0" y="47" width="230" height="41"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="41" id="KjK-Bs-jCI"/>
@@ -208,7 +212,6 @@
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Kul-hY-JpF">
                                 <rect key="frame" x="21" y="347" width="372" height="515"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <color key="textColor" red="0.50980392156862742" green="0.50980392156862742" blue="0.50980392156862742" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -229,8 +232,6 @@
                             <constraint firstItem="Kul-hY-JpF" firstAttribute="top" secondItem="D9H-on-iZo" secondAttribute="bottom" constant="60" id="F5E-AP-DNA"/>
                             <constraint firstItem="D9H-on-iZo" firstAttribute="leading" secondItem="pTC-G8-Q6q" secondAttribute="trailing" constant="14" id="Kc2-JD-P7m"/>
                             <constraint firstItem="7MZ-mf-MTf" firstAttribute="trailing" secondItem="Kul-hY-JpF" secondAttribute="trailing" constant="21" id="Z6H-NA-2Bq"/>
-                            <constraint firstItem="pTC-G8-Q6q" firstAttribute="height" secondItem="PLu-pk-DTS" secondAttribute="height" multiplier="0.216518" id="cCE-iE-dh3"/>
-                            <constraint firstItem="pTC-G8-Q6q" firstAttribute="width" secondItem="PLu-pk-DTS" secondAttribute="width" multiplier="0.309179" id="eXz-kZ-6qD"/>
                             <constraint firstItem="Kul-hY-JpF" firstAttribute="leading" secondItem="7MZ-mf-MTf" secondAttribute="leading" constant="21" id="h3y-0Z-3hp"/>
                             <constraint firstItem="pTC-G8-Q6q" firstAttribute="leading" secondItem="7MZ-mf-MTf" secondAttribute="leading" constant="21" id="m1g-vD-oJG"/>
                             <constraint firstItem="Kul-hY-JpF" firstAttribute="top" secondItem="oCa-lb-qn1" secondAttribute="bottom" constant="12" id="n1d-T9-P49"/>

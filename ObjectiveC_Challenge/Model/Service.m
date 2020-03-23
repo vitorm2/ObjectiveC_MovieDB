@@ -10,6 +10,7 @@
 #import "Service.h"
 #import "Movie.h"
 #import "NSArray+GenreCategory.h"
+#import <UIKit/UIKit.h>
 
 @implementation Service
 
@@ -58,8 +59,20 @@ static NSString *const imageBaseURL = @"https://image.tmdb.org/t/p/w500";
             NSArray *genresObjectArray = [movieJSON objectForKey: @"genres"];
             movieDetails.genres = [genresObjectArray getGenreFullString];
             
+            dispatch_group_t group = dispatch_group_create();
             
-            callback(movieDetails);
+            
+            dispatch_group_enter(group);
+            [self fetchImageData:movieDetails.imageURL completion:^(UIImage * image, NSString * imgURL) {
+                if (imgURL == movieDetails.imageURL) {
+                    movieDetails.movieImage = image;
+                    dispatch_group_leave(group);
+                }
+            }];
+            
+            dispatch_group_notify(group, dispatch_get_main_queue(), ^{
+                callback(movieDetails);
+            });
         }
         
         @catch ( NSException *e ) {
@@ -122,12 +135,14 @@ static NSString *const imageBaseURL = @"https://image.tmdb.org/t/p/w500";
                 // Image
                 NSString *poster_path = [movie objectForKey: @"poster_path"];
                 currentMovie.imageURL = [imageBaseURL stringByAppendingString: poster_path];
+                
                 [movies addObject:currentMovie];
                 
                 currentMovie = nil;
             }
-
+            
             callback(movies);
+            
         }
         
         @catch ( NSException *e ) {
@@ -140,14 +155,39 @@ static NSString *const imageBaseURL = @"https://image.tmdb.org/t/p/w500";
     
 }
 
+- (void)downloadImages:(NSArray<Movie *> *)movies completion:(void (^)(NSMutableDictionary<NSString *,UIImage *> *))callback {
+ 
+    NSMutableDictionary<NSString *,UIImage *> *myDic = [[NSMutableDictionary<NSString *,UIImage *> alloc] init];
+    
+    dispatch_group_t group = dispatch_group_create();
+    
+    
+    for (Movie *movie in movies) {
+        dispatch_group_enter(group);
+        
+        [self fetchImageData: movie.imageURL completion:^(UIImage * image, NSString * imgURL) {
+            
+            [myDic  setObject:image forKey:imgURL];
+            
+            dispatch_group_leave(group);
+        }];
+    }
+    
+    dispatch_group_notify(group, dispatch_get_main_queue(), ^{
+        callback(myDic);
+    });
+}
 
-- (void)fetchImageData:(NSString*) imageURL completion:(void (^)(NSData *))callback {
+
+- (void)fetchImageData:(NSString*) imageURL completion:(void (^)(UIImage *, NSString *))callback {
     
       NSURL *imgURL = [NSURL URLWithString: imageURL];
 
       [[NSURLSession.sharedSession dataTaskWithURL:(imgURL) completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
           if (!error) {
-              callback(data);
+              UIImage *returnImage = [[UIImage alloc] initWithData:data];
+              
+              callback(returnImage, imageURL);
           }else{
               NSLog(@"IMAGE FETCH ERROR: %@",error);
           }

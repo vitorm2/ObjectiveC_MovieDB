@@ -12,13 +12,22 @@
 
 @interface ViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
-@property (weak, nonatomic) IBOutlet UITableView *popularMovies_tableView;
-@property NSArray<Movie *> *popularMovies;
-@property NSArray<Movie *> *nowPlayingMovies;
+@property (weak, nonatomic) IBOutlet UITableView *movies_mainTableView;
+
 @property Service *myService;
 
+@property NSArray<Movie *> *popularMovies;
+@property NSArray<Movie *> *nowPlayingMovies;
+@property NSArray<Movie *> *filtedPopularArray;
+@property NSArray<Movie *> *filtedNowPlayingArray;
+
+
+@property NSDictionary<NSString *,UIImage *> *popularMoviesImages;
+@property NSDictionary<NSString *,UIImage *> *nowPlayingMoviesImages;
+
 - (void) setupNavigationBar;
-- (void) fetchImage: (NSString *)imageURL completion:(void (^)(UIImage*))callback;
+- (NSArray *) sortMovieArrayByVoteAverage:(NSMutableArray<Movie *> *)movieArray;
+
 
 
 @end
