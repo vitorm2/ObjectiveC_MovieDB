@@ -12,11 +12,16 @@
 #import "Service.h"
 #import "TableViewCell.h"
 #import "MovieDetailController.h"
-//#import "NSArray+RemoveEquals.h"
 #import <QuartzCore/QuartzCore.h>
+#import "CustomImageView.h"
+
+
+
 @interface ViewController ()
 
 @end
+
+//NSCache<NSString *, UIImage* > * imageCache = [[super allocWithZone:NULL] init];
 
 @implementation ViewController
 
@@ -38,12 +43,7 @@
         
         // Get just the first two popular movies
         self.filtedPopularArray = [self->_popularMovies subarrayWithRange: NSMakeRange (0, 2)];
-        
-        // Download all Popular movies images
-        [self.myService downloadImages:self.filtedPopularArray completion:^(NSDictionary<NSString *,UIImage *> *resultDictionary) {
-            self.popularMoviesImages = resultDictionary;
-            dispatch_group_leave(group);
-        }];
+        dispatch_group_leave(group);
     }];
     
      dispatch_group_enter(group);
@@ -51,12 +51,7 @@
         
         // Sort by vote average
         self.nowPlayingMovies = [self sortMovieArrayByVoteAverage: movies];
-        
-        // Download all nowPlaying movies images
-        [self.myService downloadImages:self.nowPlayingMovies completion:^(NSDictionary<NSString *,UIImage *> *resultDictionary) {
-            self.nowPlayingMoviesImages = resultDictionary;
-            dispatch_group_leave(group);
-        }];
+        dispatch_group_leave(group);
     }];
     
     
@@ -78,21 +73,18 @@
 - (void)setupNavigationBar {
     self.navigationItem.title = @"Movies";
     UISearchController *searchController =   UISearchController.new;
-//    searchController.searchResultsUpdater = resultsViewController
     searchController.obscuresBackgroundDuringPresentation = true;
-//    searchController.delegate = resultsViewController
-//    searchController.searchBar.delegate = resultsViewController
     self.navigationItem.searchController = searchController;
     self.navigationItem.hidesSearchBarWhenScrolling = false;
     self.navigationController.navigationBar.prefersLargeTitles = YES;
 }
 
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(NSNumber *)sender {
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(Movie *)sender {
     
     if ([[segue identifier] isEqualToString:@"movieDetailSegue"]) {
         MovieDetailController *movieDetailsViewController = [segue destinationViewController];
-        movieDetailsViewController.movieID = sender;
+        movieDetailsViewController.movie = sender;
     }
 }
 
@@ -105,26 +97,20 @@
 
     // Popular Section
     if (indexPath.section == 0) {
-        
-        cell.movieTitle.text = _filtedPopularArray[indexPath.row].title;
-        cell.movieOverview.text = _filtedPopularArray[indexPath.row].overview;
-        cell.movieImage.layer.cornerRadius = 10;
-        cell.movieRate.text = [NSString stringWithFormat:@"%.01f", _filtedPopularArray[indexPath.row].vote_avegare.doubleValue];
-        cell.movieImage.image = _popularMoviesImages[_filtedPopularArray[indexPath.row].imageURL];
+        cell.movie = _filtedPopularArray[indexPath.row];
         
     // Now Playing Section
     } else if (indexPath.section == 1){
-
-        cell.movieTitle.text = _filtedNowPlayingArray[indexPath.row].title;
-        cell.movieOverview.text = _filtedNowPlayingArray[indexPath.row].overview;
-        cell.movieImage.layer.cornerRadius = 10;
-        cell.movieRate.text = [NSString stringWithFormat:@"%.01f", _filtedNowPlayingArray[indexPath.row].vote_avegare.doubleValue];
-        cell.movieImage.image = _nowPlayingMoviesImages[_filtedNowPlayingArray[indexPath.row].imageURL];
+        cell.movie = _filtedNowPlayingArray[indexPath.row];
+        
     }
     
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView didEndDisplayingCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+}
 
 - (NSArray *)sortMovieArrayByVoteAverage:(NSMutableArray<Movie *> *)movieArray {
     
@@ -170,13 +156,17 @@
     
     NSNumber *movieID = NSNumber.new;
     
+    Movie *movie = Movie.new;
+    
     if (indexPath.section == 0) {
         movieID = _filtedPopularArray[indexPath.row].movieID;
+        movie = _filtedPopularArray[indexPath.row];
     } else {
         movieID = _filtedNowPlayingArray[indexPath.row].movieID;
+        movie = _filtedNowPlayingArray[indexPath.row];
     }
 
-    [self performSegueWithIdentifier:@"movieDetailSegue" sender: movieID];
+    [self performSegueWithIdentifier:@"movieDetailSegue" sender: movie];
 }
 
 @end

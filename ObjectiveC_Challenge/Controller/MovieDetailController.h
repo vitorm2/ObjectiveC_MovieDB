@@ -22,9 +22,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *movieVoteAverageLabel;
 @property (weak, nonatomic) IBOutlet UITextView *movieOverviewTextView;
 
-
-
-
 @end
 
 NS_ASSUME_NONNULL_END

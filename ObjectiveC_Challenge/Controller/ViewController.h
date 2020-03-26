@@ -21,7 +21,6 @@
 @property NSArray<Movie *> *filtedPopularArray;
 @property NSArray<Movie *> *filtedNowPlayingArray;
 
-
 @property NSDictionary<NSString *,UIImage *> *popularMoviesImages;
 @property NSDictionary<NSString *,UIImage *> *nowPlayingMoviesImages;
 
