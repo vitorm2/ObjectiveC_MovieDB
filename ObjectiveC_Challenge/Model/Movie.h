@@ -18,7 +18,6 @@
 @property NSString *genres;
 @property NSNumber *vote_avegare;
 @property NSString *imageURL;
-@property UIImage *movieImage;
 
 @end
 

@@ -8,6 +8,7 @@
 
 #import "CustomImageView.h"
 #import "ViewController.h"
+#import "ImageCache.h"
   
 @implementation CustomImageView
 
@@ -19,8 +20,9 @@
     
     self.image = nil;
     
-    if([imageCache objectForKey:urlString]) {
-        self.image = [imageCache objectForKey:urlString];
+    
+    if([[ImageCache.sharedManager shared] objectForKey:urlString]) {
+        self.image = [[ImageCache.sharedManager shared] objectForKey:urlString];
         return;
     }
 
@@ -34,7 +36,7 @@
                   });
               }
               
-              [imageCache setObject:returnImage forKey:urlString];
+              [[ImageCache.sharedManager shared] setObject:returnImage forKey:urlString];
               
           }else{
               NSLog(@"IMAGE FETCH ERROR: %@",error);

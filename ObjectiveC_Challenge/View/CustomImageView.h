@@ -16,7 +16,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 -(void) loadImageWithStringURL: (NSString *)urlString;
 
-
 @end
 
 NS_ASSUME_NONNULL_END

@@ -21,28 +21,27 @@
     
     Service *myService = Service.new;
     
-    if (_movie.vote_avegare != nil) {
-        self.movieDetailImage.layer.cornerRadius = 10;
-        self.movieDetailImage.image = self.movie.movieImage;
-        self.movieTitleLabel.text = self.movie.title;
-        self.movieGenreLabel.text = self.movie.genres;
-        self.movieVoteAverageLabel.text = [NSString stringWithFormat:@"%.01f", self.movie.vote_avegare.doubleValue];
-        self.movieOverviewTextView.text = self.movie.overview;
-    } else {
         
-        [myService fetchMovieDetails:_movieID completion:^(Movie * movie) {
-               self.movie.genres = movie.genres;
-               
-               dispatch_async(dispatch_get_main_queue(), ^{
-                    self.movieDetailImage.layer.cornerRadius = 10;
-                   self.movieDetailImage.image = self.movie.movieImage;
-                   self.movieTitleLabel.text = self.movie.title;
-                   self.movieGenreLabel.text = self.movie.genres;
-                   self.movieVoteAverageLabel.text = [NSString stringWithFormat:@"%.01f", self.movie.vote_avegare.doubleValue];
-                   self.movieOverviewTextView.text = self.movie.overview;
-               });
-           }];
-    }
+    [myService fetchMovieDetails:_movieID completion:^(Movie * movie) {
+        self.movie = movie;
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+        
+            self.movieTitleLabel.text = self.movie.title;
+            self.movieGenreLabel.text = self.movie.genres;
+            
+            self.voteAverageImage.hidden = false;
+            self.movieVoteAverageLabel.hidden = false;
+            self.overviewLabel.hidden = false;
+            
+            self.movieVoteAverageLabel.text = [NSString stringWithFormat:@"%.01f", self.movie.vote_avegare.doubleValue];
+            self.movieOverviewTextView.text = self.movie.overview;
+            
+            [self.movieDetailImage loadImageWithStringURL: self.movie.imageURL];
+            self.movieDetailImage.layer.cornerRadius = 10;
+        });
+    }];
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated {

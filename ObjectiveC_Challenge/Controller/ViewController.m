@@ -14,14 +14,12 @@
 #import "MovieDetailController.h"
 #import <QuartzCore/QuartzCore.h>
 #import "CustomImageView.h"
-
+#import "ImageCache.h"
 
 
 @interface ViewController ()
 
 @end
-
-//NSCache<NSString *, UIImage* > * imageCache = [[super allocWithZone:NULL] init];
 
 @implementation ViewController
 
@@ -80,11 +78,11 @@
 }
 
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(Movie *)sender {
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(NSNumber *)sender {
     
     if ([[segue identifier] isEqualToString:@"movieDetailSegue"]) {
         MovieDetailController *movieDetailsViewController = [segue destinationViewController];
-        movieDetailsViewController.movie = sender;
+        movieDetailsViewController.movieID = sender;
     }
 }
 
@@ -156,17 +154,13 @@
     
     NSNumber *movieID = NSNumber.new;
     
-    Movie *movie = Movie.new;
-    
     if (indexPath.section == 0) {
         movieID = _filtedPopularArray[indexPath.row].movieID;
-        movie = _filtedPopularArray[indexPath.row];
     } else {
         movieID = _filtedNowPlayingArray[indexPath.row].movieID;
-        movie = _filtedNowPlayingArray[indexPath.row];
     }
 
-    [self performSegueWithIdentifier:@"movieDetailSegue" sender: movie];
+    [self performSegueWithIdentifier:@"movieDetailSegue" sender: movieID];
 }
 
 @end
