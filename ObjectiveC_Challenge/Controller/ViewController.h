@@ -14,13 +14,13 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *movies_mainTableView;
 
-@property Service *myService;
+@property (nonatomic) Service *myService;
 
 @property NSArray<Movie *> *popularMovies;
 @property NSArray<Movie *> *nowPlayingMovies;
 @property NSArray<Movie *> *filtedPopularArray;
 @property NSArray<Movie *> *filtedNowPlayingArray;
-@property NSMutableArray<Movie *> *filteredMovies;
+@property NSMutableArray<Movie *> *filteredAllMovies;
 
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 

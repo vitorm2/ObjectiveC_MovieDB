@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		775F6707242DCF6F0066DD39 /* ResultRequestSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = 775F6706242DCF6F0066DD39 /* ResultRequestSearch.m */; };
 		CF235CEF242A7A2800BB18D6 /* SwiftViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF235CEE242A7A2800BB18D6 /* SwiftViewController.swift */; };
 		CF39E710242D7A560091E12E /* ImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = CF39E70F242D7A560091E12E /* ImageCache.m */; };
 		CF8E8AF6242D23FC003E8924 /* CustomImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF8E8AF5242D23FC003E8924 /* CustomImageView.m */; };
@@ -25,6 +26,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		775F6705242DCF6F0066DD39 /* SearchResultArray.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchResultArray.h; sourceTree = "<group>"; };
+		775F6706242DCF6F0066DD39 /* ResultRequestSearch.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ResultRequestSearch.m; sourceTree = "<group>"; };
+		775F6708242DD5840066DD39 /* SearchResult.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchResult.h; sourceTree = "<group>"; };
 		CF235CED242A7A2800BB18D6 /* ObjectiveC_Challenge-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ObjectiveC_Challenge-Bridging-Header.h"; sourceTree = "<group>"; };
 		CF235CEE242A7A2800BB18D6 /* SwiftViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftViewController.swift; sourceTree = "<group>"; };
 		CF39E70E242D7A560091E12E /* ImageCache.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImageCache.h; sourceTree = "<group>"; };
@@ -123,6 +127,9 @@
 				CFB2D94624215E3100D0EF1F /* Service.m */,
 				CF39E70E242D7A560091E12E /* ImageCache.h */,
 				CF39E70F242D7A560091E12E /* ImageCache.m */,
+				775F6705242DCF6F0066DD39 /* SearchResultArray.h */,
+				775F6708242DD5840066DD39 /* SearchResult.h */,
+				775F6706242DCF6F0066DD39 /* ResultRequestSearch.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -243,6 +250,7 @@
 				CF8E8AF6242D23FC003E8924 /* CustomImageView.m in Sources */,
 				CFB8BD212421C95700075720 /* NSArray+GenreCategory.m in Sources */,
 				CF9DBE2B241FF6CA0009AA1F /* main.m in Sources */,
+				775F6707242DCF6F0066DD39 /* ResultRequestSearch.m in Sources */,
 				CF9DBE1D241FF6C60009AA1F /* SceneDelegate.m in Sources */,
 				CF235CEF242A7A2800BB18D6 /* SwiftViewController.swift in Sources */,
 				CF39E710242D7A560091E12E /* ImageCache.m in Sources */,

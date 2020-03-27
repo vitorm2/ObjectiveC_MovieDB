@@ -24,6 +24,8 @@
 @implementation ViewController
 BOOL isFiltred;
 
+
+dispatch_group_t group;
 - (void)viewDidLoad {
     [super viewDidLoad];
     isFiltred = false;
@@ -32,9 +34,10 @@ BOOL isFiltred;
     _movies_mainTableView.dataSource = self;
     _movies_mainTableView.delegate = self;
     
-    dispatch_group_t group = dispatch_group_create();
+     group = dispatch_group_create();
     
     dispatch_group_enter(group);
+
     [_myService fetchMovies:POPULAR completion:^(NSMutableArray * movies) {
         
         // Sort by vote average
@@ -67,33 +70,39 @@ BOOL isFiltred;
 
 - (void)viewWillAppear:(BOOL)animated {
     self.navigationItem.title = @"Movies";
-   // [self setupNavigationBar];
 }
 
-//- (void)setupNavigationBar {
-//
-//    UISearchController *searchController =   UISearchController.new;
-//    searchController.obscuresBackgroundDuringPresentation = true;
-//    self.navigationItem.searchController = searchController;
-//    self.navigationItem.hidesSearchBarWhenScrolling = false;
-//    self.navigationController.navigationBar.prefersLargeTitles = YES;
-//}
 
+// MARK: - Request Movies filtred when taped enter button
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
+   _filteredAllMovies = [[NSMutableArray alloc] init];
+     __block NSArray<Movie *> *mov = [[NSArray alloc] init];
+    _myService.strFindMe = searchBar.text;
+     
+     dispatch_group_enter(group);
+    [_myService fetchMovies:RESULT_SEARCH completion:^(NSMutableArray * movies) {
+           
+        mov = movies;
+       // mov = movies;
+           dispatch_group_leave(group);
+       }];
+    // [self.movies_mainTableView reloadData];
+     NSLog(@"%@", searchBar.text);
+}
 
 - (void) searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
-     NSLog(@"to no pico");
+     
     if (searchText.length == 0){
         isFiltred = NO;
         [self.movies_mainTableView reloadData];
     }else{
         isFiltred = true;
-        _filteredMovies = [[NSMutableArray alloc] init];
+        _filteredAllMovies = [[NSMutableArray alloc] init];
 
         for (Movie *movie in _filtedPopularArray) {
             NSRange nameRange = [movie.title rangeOfString:searchText options:NSCaseInsensitiveSearch];
             if (nameRange.location != NSNotFound){
-                [_filteredMovies addObject:movie];
-                NSLog(@"%@", movie.title);
+                [_filteredAllMovies addObject:movie];
             }
             
         }
@@ -101,13 +110,10 @@ BOOL isFiltred;
         for (Movie *movie in _filtedNowPlayingArray) {
             NSRange nameRange = [movie.title rangeOfString:searchText options:NSCaseInsensitiveSearch];
             if (nameRange.location != NSNotFound){
-                [_filteredMovies addObject:movie];
-                NSLog(@"%@", movie.title);
+                [_filteredAllMovies addObject:movie];
             }
             
         }
-        
-        
          [self.movies_mainTableView reloadData];
     }
     
@@ -131,7 +137,7 @@ BOOL isFiltred;
     TableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
     
     if(isFiltred){
-        cell.movie = _filteredMovies[indexPath.row];
+        cell.movie = _filteredAllMovies[indexPath.row];
     }
     // Popular Section
     else if(indexPath.section == 0) {
@@ -154,6 +160,7 @@ BOOL isFiltred;
     
     NSSortDescriptor *sortDescriptor;
     sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"vote_avegare" ascending:NO];
+    
     NSArray *sortedArray = [movieArray sortedArrayUsingDescriptors:@[sortDescriptor]];
     return sortedArray;
 }
@@ -161,7 +168,7 @@ BOOL isFiltred;
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (isFiltred) {
-        return _filteredMovies.count;
+        return _filteredAllMovies.count;
     }else{
         if (section == 0) { return self.filtedPopularArray.count; }
            else { return self.filtedNowPlayingArray.count; }
@@ -202,7 +209,7 @@ BOOL isFiltred;
     NSNumber *movieID = NSNumber.new;
     
     if (isFiltred) {
-        movieID = _filteredMovies[indexPath.row].movieID;
+        movieID = _filteredAllMovies[indexPath.row].movieID;
     }else if (indexPath.section == 0) {
         movieID = _filtedPopularArray[indexPath.row].movieID;
     } else {

@@ -8,15 +8,16 @@
 
 #import <Foundation/Foundation.h>
 #import "Movie.h"
-
+#import "SearchResultArray.h"
 @interface Service : NSObject
 
 typedef enum moviesCategoryType {
     POPULAR,
-    NOW_PLAYING
+    NOW_PLAYING,
+    RESULT_SEARCH
 } moviesCategory;
 
-
+@property NSString* strFindMe;
 
 - (void) fetchImageData:(NSString* )imageURL completion:(void (^)(UIImage *, NSString *))callback;
 
