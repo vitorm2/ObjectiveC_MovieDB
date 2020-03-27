@@ -10,7 +10,7 @@
 #import "Movie.h"
 #import "Service.h"
 
-@interface ViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+@interface ViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *movies_mainTableView;
 
@@ -20,8 +20,11 @@
 @property NSArray<Movie *> *nowPlayingMovies;
 @property NSArray<Movie *> *filtedPopularArray;
 @property NSArray<Movie *> *filtedNowPlayingArray;
+@property NSMutableArray<Movie *> *filteredMovies;
 
-- (void) setupNavigationBar;
+@property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
+
+//- (void) setupNavigationBar;
 - (NSArray *) sortMovieArrayByVoteAverage:(NSMutableArray<Movie *> *)movieArray;
 
 

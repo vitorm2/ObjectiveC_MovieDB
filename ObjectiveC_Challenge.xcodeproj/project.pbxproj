@@ -396,7 +396,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "Vitor-Demenighi.ObjectiveC-Challen2";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "/Users/vitordemenighi/Desktop/ObjectiveC_Challenge/ObjectiveC_Challenge/Controller/Swift/ObjectiveC_Challenge-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "/Users/guilhermerangel/Google Drive/ObjectiveC_Challenge/ObjectiveC_Challenge/Controller/Swift/ObjectiveC_Challenge-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -417,7 +417,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "Vitor-Demenighi.ObjectiveC-Challen2";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "/Users/vitordemenighi/Desktop/ObjectiveC_Challenge/ObjectiveC_Challenge/Controller/Swift/ObjectiveC_Challenge-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "/Users/guilhermerangel/Google Drive/ObjectiveC_Challenge/ObjectiveC_Challenge/Controller/Swift/ObjectiveC_Challenge-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

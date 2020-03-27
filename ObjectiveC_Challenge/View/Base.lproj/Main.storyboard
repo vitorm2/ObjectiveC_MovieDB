@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="89r-Oe-eAb">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="89r-Oe-eAb">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -21,9 +21,14 @@
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="nNz-kF-Q92">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="774"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <searchBar key="tableHeaderView" contentMode="redraw" placeholder="Search" id="g0c-Je-ekg">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                        </searchBar>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SimpleTableItem" rowHeight="158" id="0mc-0z-W02" customClass="TableViewCell">
-                                                <rect key="frame" x="0.0" y="28" width="414" height="158"/>
+                                                <rect key="frame" x="0.0" y="72" width="414" height="158"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="0mc-0z-W02" id="7Vw-Oc-iX2">
                                                     <rect key="frame" x="0.0" y="0.0" width="414" height="158"/>
@@ -133,6 +138,7 @@
                     <navigationItem key="navigationItem" id="o3J-lZ-LlK"/>
                     <connections>
                         <outlet property="movies_mainTableView" destination="nNz-kF-Q92" id="wP4-rt-hMf"/>
+                        <outlet property="searchBar" destination="g0c-Je-ekg" id="hFt-hK-cdk"/>
                         <segue destination="sLD-AL-DN8" kind="show" identifier="movieDetailSegue" id="0wX-AS-Njl"/>
                     </connections>
                 </viewController>
@@ -404,6 +410,6 @@
     </scenes>
     <resources>
         <image name="Star Icon" width="17" height="16.5"/>
-        <image name="star" catalog="system" width="64" height="58"/>
+        <image name="star" catalog="system" width="128" height="116"/>
     </resources>
 </document>

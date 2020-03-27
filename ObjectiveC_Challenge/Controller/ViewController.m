@@ -18,16 +18,17 @@
 
 
 @interface ViewController ()
-
+ 
 @end
 
 @implementation ViewController
+BOOL isFiltred;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    isFiltred = false;
     _myService = Service.new;
-    
+    self.searchBar.delegate = self;
     _movies_mainTableView.dataSource = self;
     _movies_mainTableView.delegate = self;
     
@@ -65,17 +66,53 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    [self setupNavigationBar];
+    self.navigationItem.title = @"Movies";
+   // [self setupNavigationBar];
 }
 
-- (void)setupNavigationBar {
-    self.navigationItem.title = @"Movies";
-    UISearchController *searchController =   UISearchController.new;
-    searchController.obscuresBackgroundDuringPresentation = true;
-    self.navigationItem.searchController = searchController;
-    self.navigationItem.hidesSearchBarWhenScrolling = false;
-    self.navigationController.navigationBar.prefersLargeTitles = YES;
+//- (void)setupNavigationBar {
+//
+//    UISearchController *searchController =   UISearchController.new;
+//    searchController.obscuresBackgroundDuringPresentation = true;
+//    self.navigationItem.searchController = searchController;
+//    self.navigationItem.hidesSearchBarWhenScrolling = false;
+//    self.navigationController.navigationBar.prefersLargeTitles = YES;
+//}
+
+
+- (void) searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
+     NSLog(@"to no pico");
+    if (searchText.length == 0){
+        isFiltred = NO;
+        [self.movies_mainTableView reloadData];
+    }else{
+        isFiltred = true;
+        _filteredMovies = [[NSMutableArray alloc] init];
+
+        for (Movie *movie in _filtedPopularArray) {
+            NSRange nameRange = [movie.title rangeOfString:searchText options:NSCaseInsensitiveSearch];
+            if (nameRange.location != NSNotFound){
+                [_filteredMovies addObject:movie];
+                NSLog(@"%@", movie.title);
+            }
+            
+        }
+        
+        for (Movie *movie in _filtedNowPlayingArray) {
+            NSRange nameRange = [movie.title rangeOfString:searchText options:NSCaseInsensitiveSearch];
+            if (nameRange.location != NSNotFound){
+                [_filteredMovies addObject:movie];
+                NSLog(@"%@", movie.title);
+            }
+            
+        }
+        
+        
+         [self.movies_mainTableView reloadData];
+    }
+    
 }
+
 
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(NSNumber *)sender {
@@ -92,13 +129,16 @@
     static NSString *simpleTableIdentifier = @"SimpleTableItem";
     
     TableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
-
+    
+    if(isFiltred){
+        cell.movie = _filteredMovies[indexPath.row];
+    }
     // Popular Section
-    if (indexPath.section == 0) {
-        cell.movie = _filtedPopularArray[indexPath.row];
-        
+    else if(indexPath.section == 0) {
+         cell.movie = _filtedPopularArray[indexPath.row];
+    }
     // Now Playing Section
-    } else if (indexPath.section == 1){
+     else if (indexPath.section == 1){
         cell.movie = _filtedNowPlayingArray[indexPath.row];
         
     }
@@ -120,9 +160,13 @@
 
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    
-    if (section == 0) { return self.filtedPopularArray.count; }
-    else { return self.filtedNowPlayingArray.count; }
+    if (isFiltred) {
+        return _filteredMovies.count;
+    }else{
+        if (section == 0) { return self.filtedPopularArray.count; }
+           else { return self.filtedNowPlayingArray.count; }
+    }
+   
 }
 
 
@@ -138,6 +182,9 @@
 
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    if (isFiltred){
+        return 1;
+    }
     return 2;
 }
 
