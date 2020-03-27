@@ -201,7 +201,9 @@ BOOL isFiltred;
     
     NSNumber *movieID = NSNumber.new;
     
-    if (indexPath.section == 0) {
+    if (isFiltred) {
+        movieID = _filteredMovies[indexPath.row].movieID;
+    }else if (indexPath.section == 0) {
         movieID = _filtedPopularArray[indexPath.row].movieID;
     } else {
         movieID = _filtedNowPlayingArray[indexPath.row].movieID;
