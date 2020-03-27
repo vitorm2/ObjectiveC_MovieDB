@@ -11,7 +11,6 @@
 #import "Movie.h"
 #import "NSArray+GenreCategory.h"
 #import <UIKit/UIKit.h>
-#import "SearchResult.h"
 
 @implementation Service
 
@@ -21,8 +20,6 @@
 static NSString *const API_key = @"79bb37b9869aa0ed97dc7a23c93d0829";
 static NSString *const imageBaseURL = @"https://image.tmdb.org/t/p/w500";
 static NSString *const urlBase = @"https://api.themoviedb.org/3/movie/";
-NSURL *url;
-NSString *strFormated;
 
 - (void) fetchMovieDetails:(NSNumber* )movieId completion:(void (^)(Movie*))callback {
     
@@ -76,6 +73,73 @@ NSString *strFormated;
     
 }
 
+
+- (void)searchMovies:(NSString *)searchString completion:(void (^)(NSMutableArray *))callback {
+    
+    
+    NSString *urlString = [NSString stringWithFormat: @"https://api.themoviedb.org/3/search/movie?api_key=79bb37b9869aa0ed97dc7a23c93d0829&language=en-US&query=%@", searchString];
+    NSURL *url = [NSURL URLWithString: urlString];
+    
+      [[NSURLSession.sharedSession dataTaskWithURL:url completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+          
+          if (error) {
+              NSLog(@"Request error: %@", error);
+              return;
+          }
+          
+          NSError *err;
+          NSDictionary *moviesJSON = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&err];
+          
+          if (error) {
+              NSLog(@"JSON Serialization Error: %@", error);
+              return;
+          }
+          
+          
+          @try {
+              // JSON Dictionary object array
+              NSArray *moviesResultArray = [moviesJSON objectForKey: @"results"];
+              
+              // Movie object array
+              NSMutableArray *movies = [[NSMutableArray alloc] init];
+              
+              for (NSDictionary *movie in moviesResultArray) {
+                  
+                  Movie *currentMovie = [[Movie alloc] init];
+                  
+                  currentMovie.movieID = [movie objectForKey: @"id"];
+                  currentMovie.title = [movie objectForKey: @"original_title"];
+                  currentMovie.overview = [movie objectForKey: @"overview"];
+                  currentMovie.vote_avegare = [movie objectForKey:@"vote_average"];
+                  
+                  // Image
+                  NSString *poster_path = [movie objectForKey: @"poster_path"];
+
+                  if (![poster_path isKindOfClass: NSNull.class]) {
+                      currentMovie.imageURL = [imageBaseURL stringByAppendingString: poster_path];
+                      
+                      [movies addObject:currentMovie];
+                      
+                      currentMovie = nil;
+                  }
+                  
+                  
+              }
+              
+              callback(movies);
+              
+          }
+          @catch ( NSException *e ) {
+              NSLog(@"JSON Parse error: %@", e);
+              return;
+          }
+          
+          
+     }] resume];
+    
+    
+}
+
 - (void) fetchMovies:(moviesCategory)moviesCategory completion: (void (^)(NSMutableArray*))callback {
     
     NSString *movies_GET_URL = [NSString alloc];
@@ -84,21 +148,10 @@ NSString *strFormated;
         movies_GET_URL = @"https://api.themoviedb.org/3/movie/popular";
     } else if (moviesCategory == NOW_PLAYING) {
         movies_GET_URL = @"https://api.themoviedb.org/3/movie/now_playing";
-    }else if (moviesCategory == RESULT_SEARCH) {
-        
-        NSString *urlSearch = @"https://api.themoviedb.org/3/search/movie?api_key=79bb37b9869aa0ed97dc7a23c93d0829&language=en-US&query=";
-        
-        strFormated = [NSString stringWithFormat: @"%@%@", urlSearch, _strFindMe];
-        
-        
-        
     }
-    if (moviesCategory == RESULT_SEARCH){
-        url = [NSURL URLWithString: strFormated];
-    }else {
-        NSString *urlString = [NSString stringWithFormat: @"%@?api_key=%@", movies_GET_URL, API_key];
-        url = [NSURL URLWithString: urlString];
-    }
+    
+    NSString *urlString = [NSString stringWithFormat: @"%@?api_key=%@", movies_GET_URL, API_key];
+    NSURL *url = [NSURL URLWithString: urlString];
     
     
     [[NSURLSession.sharedSession dataTaskWithURL:url completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
@@ -123,46 +176,26 @@ NSString *strFormated;
             
             // Movie object array
             NSMutableArray *movies = [[NSMutableArray alloc] init];
-            if (moviesCategory == RESULT_SEARCH){
-                for (NSDictionary *movie in moviesResultArray) {
-                    
-                    SearchResult *currentMovie = [[SearchResult alloc] init];
-                    
-                   // currentMovie.movieId = [movie objectForKey:@"id"];
-                    currentMovie.original_title = [movie objectForKey:@"original_title"];
-                    currentMovie.overview = [movie objectForKey:@"overview"];
-                    currentMovie.vote_average = [movie objectForKey:@"vote_average"];
-                    
-                    // Image
-//                    NSString *poster_path = [movie objectForKey: @"poster_path"];
-//                    currentMovie.poster_path = [imageBaseURL stringByAppendingString: poster_path];
-
-
-                    [movies addObject:currentMovie];
-                    
-                    currentMovie = nil;
-                }
-            }else {
-                for (NSDictionary *movie in moviesResultArray) {
-                    
-                    Movie *currentMovie = [[Movie alloc] init];
-                    
-                    currentMovie.movieID = [movie objectForKey: @"id"];
-                    currentMovie.title = [movie objectForKey: @"original_title"];
-                    currentMovie.overview = [movie objectForKey: @"overview"];
-                    currentMovie.vote_avegare = [movie objectForKey:@"vote_average"];
-                    
-                    // Image
-                    NSString *poster_path = [movie objectForKey: @"poster_path"];
-                    currentMovie.imageURL = [imageBaseURL stringByAppendingString: poster_path];
-                    
-                    [movies addObject:currentMovie];
-                    
-                    currentMovie = nil;
-                }
+            
+            for (NSDictionary *movie in moviesResultArray) {
+                
+                Movie *currentMovie = [[Movie alloc] init];
+                
+                currentMovie.movieID = [movie objectForKey: @"id"];
+                currentMovie.title = [movie objectForKey: @"original_title"];
+                currentMovie.overview = [movie objectForKey: @"overview"];
+                currentMovie.vote_avegare = [movie objectForKey:@"vote_average"];
+                
+                // Image
+                NSString *poster_path = [movie objectForKey: @"poster_path"];
+                currentMovie.imageURL = [imageBaseURL stringByAppendingString: poster_path];
+                
+                [movies addObject:currentMovie];
+                
+                currentMovie = nil;
             }
             
-            NSLog(@"%lu", (unsigned long)movies.count);
+            
             callback(movies);
             
         }
@@ -176,6 +209,9 @@ NSString *strFormated;
     }] resume];
     
 }
+
+
+
 
 - (void)downloadImages:(NSArray<Movie *> *)movies completion:(void (^)(NSMutableDictionary<NSString *,UIImage *> *))callback {
     

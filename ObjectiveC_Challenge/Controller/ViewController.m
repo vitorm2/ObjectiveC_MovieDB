@@ -15,26 +15,25 @@
 #import <QuartzCore/QuartzCore.h>
 #import "CustomImageView.h"
 #import "ImageCache.h"
-#import "SearchResult.h"
+#import "SearchViewController.h"
 
 @interface ViewController ()
  
 @end
 
 @implementation ViewController
-BOOL isFiltred;
-TableViewCell *cell;
-NSIndexPath *indexPathTableView;
-dispatch_group_t group;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    isFiltred = false;
+    
+    [self setupNavigationBar];
+    
     _myService = Service.new;
-    self.searchBar.delegate = self;
+
     _movies_mainTableView.dataSource = self;
     _movies_mainTableView.delegate = self;
     
-     group = dispatch_group_create();
+    dispatch_group_t group = dispatch_group_create();
     
     dispatch_group_enter(group);
 
@@ -68,70 +67,28 @@ dispatch_group_t group;
     });
 }
 
-- (void)viewWillAppear:(BOOL)animated {
+
+- (void)setupNavigationBar {
+    
     self.navigationItem.title = @"Movies";
-}
-
-
-// MARK: - Request Movies filtred when taped enter button
-//TODO: - os dados estao vindo corretamento preenchidos so falta tocar para tela
-- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
-    //[_filteredAllMovies removeAllObjects];
-     _filteredAllMovies = [[NSMutableArray alloc] init];
-  
-    // __block NSArray<Movie *> *mov = [[NSArray alloc] init];
-    //send text
-    _myService.strFindMe = searchBar.text;
-     
-     dispatch_group_enter(group);
-    [_myService fetchMovies:RESULT_SEARCH completion:^(NSMutableArray * movies) {
-       // self->_filteredAllMovies = movies;
-//        for (Movie *movie in movies) {
-//
-//            [self->_filteredAllMovies addObject:movie];
-//
-//
-//            NSLog(@"%@", movie.title);
-//        }
-        
-       // cell.movie =self->_filteredAllMovies.firstObject;
-       // cell.movie.title = @"aloooo";
-           dispatch_group_leave(group);
-       }];
-   //[self.movies_mainTableView reloadData];
+    self.navigationController.navigationBar.prefersLargeTitles = true;
     
-}
-
-- (void) searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
-     
-    if (searchText.length == 0){
-        isFiltred = NO;
-        [self.movies_mainTableView reloadData];
-    }else{
-        isFiltred = true;
-        _filteredAllMovies = [[NSMutableArray alloc] init];
-
-        for (Movie *movie in _filtedPopularArray) {
-            NSRange nameRange = [movie.title rangeOfString:searchText options:NSCaseInsensitiveSearch];
-            if (nameRange.location != NSNotFound){
-                [_filteredAllMovies addObject:movie];
-            }
-            
-        }
-        
-        for (Movie *movie in _filtedNowPlayingArray) {
-            NSRange range = [movie.title rangeOfString:searchText options:NSCaseInsensitiveSearch];
-            if (range.location != NSNotFound){
-                [_filteredAllMovies addObject:movie];
-            }
-            
-        }
-         [self.movies_mainTableView reloadData];
-    }
     
+    // Initialize search view controller
+    UINavigationController* searchNavigation =[self.storyboard instantiateViewControllerWithIdentifier:@"searchNavigation"];
+
+    UISearchController *searchController = [[UISearchController alloc] initWithSearchResultsController: searchNavigation];
+    
+    SearchViewController *searchViewController = searchNavigation.topViewController;
+    
+    searchController.searchResultsUpdater = searchViewController;
+    searchController.searchBar.delegate = searchViewController;
+    
+    
+    searchController.obscuresBackgroundDuringPresentation = true;
+    self.navigationItem.searchController = searchController;
+    self.navigationItem.hidesSearchBarWhenScrolling = false;
 }
-
-
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(NSNumber *)sender {
     
@@ -143,29 +100,23 @@ dispatch_group_t group;
 
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
-    indexPathTableView = indexPath;
+    
     static NSString *simpleTableIdentifier = @"SimpleTableItem";
     
-     cell = [tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
+     TableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
     
-    if(isFiltred){
-        cell.movie = _filteredAllMovies[indexPath.row];
-    }
     // Popular Section
-    else if(indexPath.section == 0) {
+    if(indexPath.section == 0) {
          cell.movie = _filtedPopularArray[indexPath.row];
     }
+    
+    
     // Now Playing Section
      else if (indexPath.section == 1){
         cell.movie = _filtedNowPlayingArray[indexPath.row];
-        
     }
     
     return cell;
-}
-
-- (void)tableView:(UITableView *)tableView didEndDisplayingCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-    
 }
 
 - (NSArray *)sortMovieArrayByVoteAverage:(NSMutableArray<Movie *> *)movieArray {
@@ -179,12 +130,9 @@ dispatch_group_t group;
 
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (isFiltred) {
-        return _filteredAllMovies.count;
-    }else{
-        if (section == 0) { return self.filtedPopularArray.count; }
-           else { return self.filtedNowPlayingArray.count; }
-    }
+   
+    if (section == 0) { return self.filtedPopularArray.count; }
+    else { return self.filtedNowPlayingArray.count; }
    
 }
 
@@ -201,9 +149,6 @@ dispatch_group_t group;
 
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    if (isFiltred){
-        return 1;
-    }
     return 2;
 }
 
@@ -220,9 +165,7 @@ dispatch_group_t group;
     
     NSNumber *movieID = NSNumber.new;
     
-    if (isFiltred) {
-        movieID = _filteredAllMovies[indexPath.row].movieID;
-    }else if (indexPath.section == 0) {
+    if (indexPath.section == 0) {
         movieID = _filtedPopularArray[indexPath.row].movieID;
     } else {
         movieID = _filtedNowPlayingArray[indexPath.row].movieID;

@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		775F6707242DCF6F0066DD39 /* ResultRequestSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = 775F6706242DCF6F0066DD39 /* ResultRequestSearch.m */; };
 		CF235CEF242A7A2800BB18D6 /* SwiftViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF235CEE242A7A2800BB18D6 /* SwiftViewController.swift */; };
 		CF39E710242D7A560091E12E /* ImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = CF39E70F242D7A560091E12E /* ImageCache.m */; };
 		CF8E8AF6242D23FC003E8924 /* CustomImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF8E8AF5242D23FC003E8924 /* CustomImageView.m */; };
@@ -20,15 +19,14 @@
 		CF9DBE25241FF6CA0009AA1F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CF9DBE24241FF6CA0009AA1F /* Assets.xcassets */; };
 		CF9DBE28241FF6CA0009AA1F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CF9DBE26241FF6CA0009AA1F /* LaunchScreen.storyboard */; };
 		CF9DBE2B241FF6CA0009AA1F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CF9DBE2A241FF6CA0009AA1F /* main.m */; };
+		CFA54D9D242E3455007A7BEF /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CFA54D9C242E3455007A7BEF /* SearchViewController.m */; };
+		CFA54DA0242E40F7007A7BEF /* MovieCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CFA54D9F242E40F7007A7BEF /* MovieCollectionViewCell.m */; };
 		CFB2D944242143A600D0EF1F /* Movie.m in Sources */ = {isa = PBXBuildFile; fileRef = CFB2D943242143A600D0EF1F /* Movie.m */; };
 		CFB2D94724215E3100D0EF1F /* Service.m in Sources */ = {isa = PBXBuildFile; fileRef = CFB2D94624215E3100D0EF1F /* Service.m */; };
 		CFB8BD212421C95700075720 /* NSArray+GenreCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = CFB8BD202421C95700075720 /* NSArray+GenreCategory.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		775F6705242DCF6F0066DD39 /* SearchResultArray.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchResultArray.h; sourceTree = "<group>"; };
-		775F6706242DCF6F0066DD39 /* ResultRequestSearch.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ResultRequestSearch.m; sourceTree = "<group>"; };
-		775F6708242DD5840066DD39 /* SearchResult.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchResult.h; sourceTree = "<group>"; };
 		CF235CED242A7A2800BB18D6 /* ObjectiveC_Challenge-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ObjectiveC_Challenge-Bridging-Header.h"; sourceTree = "<group>"; };
 		CF235CEE242A7A2800BB18D6 /* SwiftViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftViewController.swift; sourceTree = "<group>"; };
 		CF39E70E242D7A560091E12E /* ImageCache.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImageCache.h; sourceTree = "<group>"; };
@@ -51,6 +49,10 @@
 		CF9DBE27241FF6CA0009AA1F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CF9DBE29241FF6CA0009AA1F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CF9DBE2A241FF6CA0009AA1F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		CFA54D9B242E3455007A7BEF /* SearchViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
+		CFA54D9C242E3455007A7BEF /* SearchViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
+		CFA54D9E242E40F7007A7BEF /* MovieCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MovieCollectionViewCell.h; sourceTree = "<group>"; };
+		CFA54D9F242E40F7007A7BEF /* MovieCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MovieCollectionViewCell.m; sourceTree = "<group>"; };
 		CFB2D9422421439200D0EF1F /* Movie.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Movie.h; sourceTree = "<group>"; };
 		CFB2D943242143A600D0EF1F /* Movie.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Movie.m; sourceTree = "<group>"; };
 		CFB2D94524215E2500D0EF1F /* Service.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Service.h; sourceTree = "<group>"; };
@@ -127,9 +129,6 @@
 				CFB2D94624215E3100D0EF1F /* Service.m */,
 				CF39E70E242D7A560091E12E /* ImageCache.h */,
 				CF39E70F242D7A560091E12E /* ImageCache.m */,
-				775F6705242DCF6F0066DD39 /* SearchResultArray.h */,
-				775F6708242DD5840066DD39 /* SearchResult.h */,
-				775F6706242DCF6F0066DD39 /* ResultRequestSearch.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -141,6 +140,8 @@
 				CF9DBE1F241FF6C60009AA1F /* ViewController.m */,
 				CF910AAE2423F861002FA1CE /* MovieDetailController.h */,
 				CF910AAF2423F861002FA1CE /* MovieDetailController.m */,
+				CFA54D9B242E3455007A7BEF /* SearchViewController.h */,
+				CFA54D9C242E3455007A7BEF /* SearchViewController.m */,
 				CF235CF2242A7B6900BB18D6 /* Swift */,
 			);
 			path = Controller;
@@ -151,6 +152,8 @@
 			children = (
 				CF8E8AF4242D23FC003E8924 /* CustomImageView.h */,
 				CF8E8AF5242D23FC003E8924 /* CustomImageView.m */,
+				CFA54D9E242E40F7007A7BEF /* MovieCollectionViewCell.h */,
+				CFA54D9F242E40F7007A7BEF /* MovieCollectionViewCell.m */,
 				CF910AA62423C042002FA1CE /* TableViewCell.h */,
 				CF910AA52423C042002FA1CE /* TableViewCell.m */,
 				CF9DBE24241FF6CA0009AA1F /* Assets.xcassets */,
@@ -243,6 +246,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CF9DBE20241FF6C60009AA1F /* ViewController.m in Sources */,
+				CFA54D9D242E3455007A7BEF /* SearchViewController.m in Sources */,
 				CF9DBE1A241FF6C60009AA1F /* AppDelegate.m in Sources */,
 				CF910AB02423F861002FA1CE /* MovieDetailController.m in Sources */,
 				CFB2D944242143A600D0EF1F /* Movie.m in Sources */,
@@ -250,11 +254,11 @@
 				CF8E8AF6242D23FC003E8924 /* CustomImageView.m in Sources */,
 				CFB8BD212421C95700075720 /* NSArray+GenreCategory.m in Sources */,
 				CF9DBE2B241FF6CA0009AA1F /* main.m in Sources */,
-				775F6707242DCF6F0066DD39 /* ResultRequestSearch.m in Sources */,
 				CF9DBE1D241FF6C60009AA1F /* SceneDelegate.m in Sources */,
 				CF235CEF242A7A2800BB18D6 /* SwiftViewController.swift in Sources */,
 				CF39E710242D7A560091E12E /* ImageCache.m in Sources */,
 				CFB2D94724215E3100D0EF1F /* Service.m in Sources */,
+				CFA54DA0242E40F7007A7BEF /* MovieCollectionViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -404,7 +408,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "Vitor-Demenighi.ObjectiveC-Challen2";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "/Users/guilhermerangel/Google Drive/ObjectiveC_Challenge/ObjectiveC_Challenge/Controller/Swift/ObjectiveC_Challenge-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "/Users/vitordemenighi/Desktop/ObjectiveC_Challenge/ObjectiveC_Challenge/Controller/Swift/ObjectiveC_Challenge-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -425,7 +429,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "Vitor-Demenighi.ObjectiveC-Challen2";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "/Users/guilhermerangel/Google Drive/ObjectiveC_Challenge/ObjectiveC_Challenge/Controller/Swift/ObjectiveC_Challenge-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "/Users/vitordemenighi/Desktop/ObjectiveC_Challenge/ObjectiveC_Challenge/Controller/Swift/ObjectiveC_Challenge-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

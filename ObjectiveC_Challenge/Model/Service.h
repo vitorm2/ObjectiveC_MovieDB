@@ -13,17 +13,17 @@
 
 typedef enum moviesCategoryType {
     POPULAR,
-    NOW_PLAYING,
-    RESULT_SEARCH
+    NOW_PLAYING
 } moviesCategory;
 
-@property NSString* strFindMe;
 
 - (void) fetchImageData:(NSString* )imageURL completion:(void (^)(UIImage *, NSString *))callback;
 
 - (void) fetchMovieDetails:(NSNumber* )movieId completion:(void (^)(Movie*))callback;
 
 - (void) fetchMovies:(moviesCategory)moviesCategory completion: (void (^)(NSMutableArray*))callback;
+
+- (void) searchMovies:(NSString *)searchString completion: (void (^)(NSMutableArray*))callback;
 
 - (void) downloadImages:(NSArray<Movie *>*) movies completion: (void (^)(NSMutableDictionary<NSString *, UIImage *>*))callback;
 
