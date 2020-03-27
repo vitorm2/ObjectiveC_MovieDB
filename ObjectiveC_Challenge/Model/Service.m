@@ -19,12 +19,12 @@
 
 static NSString *const API_key = @"79bb37b9869aa0ed97dc7a23c93d0829";
 static NSString *const imageBaseURL = @"https://image.tmdb.org/t/p/w500";
+static NSString *const urlBase = @"https://api.themoviedb.org/3/movie/";
 
 - (void) fetchMovieDetails:(NSNumber* )movieId completion:(void (^)(Movie*))callback {
-
-    NSString *movieDetails_GET_URL = @"https://api.themoviedb.org/3/movie/";
     
-    NSString *urlString = [NSString stringWithFormat: @"%@%@?api_key=%@", movieDetails_GET_URL,  movieId, API_key];
+    
+    NSString *urlString = [NSString stringWithFormat: @"%@%@?api_key=%@", urlBase,  movieId, API_key];
     NSURL *url = [NSURL URLWithString: urlString];
     
     [[NSURLSession.sharedSession dataTaskWithURL:url completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
@@ -73,6 +73,73 @@ static NSString *const imageBaseURL = @"https://image.tmdb.org/t/p/w500";
     
 }
 
+
+- (void)searchMovies:(NSString *)searchString completion:(void (^)(NSMutableArray *))callback {
+    
+    
+    NSString *urlString = [NSString stringWithFormat: @"https://api.themoviedb.org/3/search/movie?api_key=79bb37b9869aa0ed97dc7a23c93d0829&language=en-US&query=%@", searchString];
+    NSURL *url = [NSURL URLWithString: urlString];
+    
+      [[NSURLSession.sharedSession dataTaskWithURL:url completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+          
+          if (error) {
+              NSLog(@"Request error: %@", error);
+              return;
+          }
+          
+          NSError *err;
+          NSDictionary *moviesJSON = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&err];
+          
+          if (error) {
+              NSLog(@"JSON Serialization Error: %@", error);
+              return;
+          }
+          
+          
+          @try {
+              // JSON Dictionary object array
+              NSArray *moviesResultArray = [moviesJSON objectForKey: @"results"];
+              
+              // Movie object array
+              NSMutableArray *movies = [[NSMutableArray alloc] init];
+              
+              for (NSDictionary *movie in moviesResultArray) {
+                  
+                  Movie *currentMovie = [[Movie alloc] init];
+                  
+                  currentMovie.movieID = [movie objectForKey: @"id"];
+                  currentMovie.title = [movie objectForKey: @"original_title"];
+                  currentMovie.overview = [movie objectForKey: @"overview"];
+                  currentMovie.vote_avegare = [movie objectForKey:@"vote_average"];
+                  
+                  // Image
+                  NSString *poster_path = [movie objectForKey: @"poster_path"];
+
+                  if (![poster_path isKindOfClass: NSNull.class]) {
+                      currentMovie.imageURL = [imageBaseURL stringByAppendingString: poster_path];
+                      
+                      [movies addObject:currentMovie];
+                      
+                      currentMovie = nil;
+                  }
+                  
+                  
+              }
+              
+              callback(movies);
+              
+          }
+          @catch ( NSException *e ) {
+              NSLog(@"JSON Parse error: %@", e);
+              return;
+          }
+          
+          
+     }] resume];
+    
+    
+}
+
 - (void) fetchMovies:(moviesCategory)moviesCategory completion: (void (^)(NSMutableArray*))callback {
     
     NSString *movies_GET_URL = [NSString alloc];
@@ -86,6 +153,7 @@ static NSString *const imageBaseURL = @"https://image.tmdb.org/t/p/w500";
     NSString *urlString = [NSString stringWithFormat: @"%@?api_key=%@", movies_GET_URL, API_key];
     NSURL *url = [NSURL URLWithString: urlString];
     
+    
     [[NSURLSession.sharedSession dataTaskWithURL:url completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         
         if (error) {
@@ -94,7 +162,6 @@ static NSString *const imageBaseURL = @"https://image.tmdb.org/t/p/w500";
         }
         
         NSError *err;
-        
         NSDictionary *moviesJSON = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&err];
         
         if (error) {
@@ -128,6 +195,7 @@ static NSString *const imageBaseURL = @"https://image.tmdb.org/t/p/w500";
                 currentMovie = nil;
             }
             
+            
             callback(movies);
             
         }
@@ -142,8 +210,11 @@ static NSString *const imageBaseURL = @"https://image.tmdb.org/t/p/w500";
     
 }
 
+
+
+
 - (void)downloadImages:(NSArray<Movie *> *)movies completion:(void (^)(NSMutableDictionary<NSString *,UIImage *> *))callback {
- 
+    
     NSMutableDictionary<NSString *,UIImage *> *myDic = [[NSMutableDictionary<NSString *,UIImage *> alloc] init];
     
     dispatch_group_t group = dispatch_group_create();
@@ -168,22 +239,19 @@ static NSString *const imageBaseURL = @"https://image.tmdb.org/t/p/w500";
 
 - (void)fetchImageData:(NSString*) imageURL completion:(void (^)(UIImage *, NSString *))callback {
     
-      NSURL *imgURL = [NSURL URLWithString: imageURL];
-
-      [[NSURLSession.sharedSession dataTaskWithURL:(imgURL) completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-          if (!error) {
-              UIImage *returnImage = [[UIImage alloc] initWithData:data];
-              
-              callback(returnImage, imageURL);
-          }else{
-              NSLog(@"IMAGE FETCH ERROR: %@",error);
-          }
-      }] resume] ;
+    NSURL *imgURL = [NSURL URLWithString: imageURL];
+    
+    [[NSURLSession.sharedSession dataTaskWithURL:(imgURL) completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        if (!error) {
+            UIImage *returnImage = [[UIImage alloc] initWithData:data];
+            
+            callback(returnImage, imageURL);
+        }else{
+            NSLog(@"IMAGE FETCH ERROR: %@",error);
+        }
+    }] resume] ;
     
 }
 
 
 @end
-
-//        - API fetch string result
-//        NSString *myString = [[NSString alloc] initWithData: data encoding:NSUTF8StringEncoding];

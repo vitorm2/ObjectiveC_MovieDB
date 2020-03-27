@@ -15,10 +15,10 @@
 #import <QuartzCore/QuartzCore.h>
 #import "CustomImageView.h"
 #import "ImageCache.h"
-
+#import "SearchViewController.h"
 
 @interface ViewController ()
-
+ 
 @end
 
 @implementation ViewController
@@ -26,14 +26,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    _myService = Service.new;
+    [self setupNavigationBar];
     
+    _myService = Service.new;
+
     _movies_mainTableView.dataSource = self;
     _movies_mainTableView.delegate = self;
     
     dispatch_group_t group = dispatch_group_create();
     
     dispatch_group_enter(group);
+
     [_myService fetchMovies:POPULAR completion:^(NSMutableArray * movies) {
         
         // Sort by vote average
@@ -64,19 +67,28 @@
     });
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-    [self setupNavigationBar];
-}
 
 - (void)setupNavigationBar {
+    
     self.navigationItem.title = @"Movies";
-    UISearchController *searchController =   UISearchController.new;
+    self.navigationController.navigationBar.prefersLargeTitles = true;
+    
+    
+    // Initialize search view controller
+    UINavigationController* searchNavigation =[self.storyboard instantiateViewControllerWithIdentifier:@"searchNavigation"];
+
+    UISearchController *searchController = [[UISearchController alloc] initWithSearchResultsController: searchNavigation];
+    
+    SearchViewController *searchViewController = searchNavigation.topViewController;
+    
+    searchController.searchResultsUpdater = searchViewController;
+    searchController.searchBar.delegate = searchViewController;
+    
+    
     searchController.obscuresBackgroundDuringPresentation = true;
     self.navigationItem.searchController = searchController;
     self.navigationItem.hidesSearchBarWhenScrolling = false;
-    self.navigationController.navigationBar.prefersLargeTitles = YES;
 }
-
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(NSNumber *)sender {
     
@@ -91,38 +103,37 @@
     
     static NSString *simpleTableIdentifier = @"SimpleTableItem";
     
-    TableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
-
+     TableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
+    
     // Popular Section
-    if (indexPath.section == 0) {
-        cell.movie = _filtedPopularArray[indexPath.row];
-        
+    if(indexPath.section == 0) {
+         cell.movie = _filtedPopularArray[indexPath.row];
+    }
+    
+    
     // Now Playing Section
-    } else if (indexPath.section == 1){
+     else if (indexPath.section == 1){
         cell.movie = _filtedNowPlayingArray[indexPath.row];
-        
     }
     
     return cell;
-}
-
-- (void)tableView:(UITableView *)tableView didEndDisplayingCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-    
 }
 
 - (NSArray *)sortMovieArrayByVoteAverage:(NSMutableArray<Movie *> *)movieArray {
     
     NSSortDescriptor *sortDescriptor;
     sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"vote_avegare" ascending:NO];
+    
     NSArray *sortedArray = [movieArray sortedArrayUsingDescriptors:@[sortDescriptor]];
     return sortedArray;
 }
 
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    
+   
     if (section == 0) { return self.filtedPopularArray.count; }
     else { return self.filtedNowPlayingArray.count; }
+   
 }
 
 
