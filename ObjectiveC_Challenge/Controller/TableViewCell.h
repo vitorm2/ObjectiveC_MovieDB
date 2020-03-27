@@ -7,12 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CustomImageView.h"
+#import "Movie.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface TableViewCell : UITableViewCell
 
-@property (weak, nonatomic) IBOutlet UIImageView *movieImage;
+@property (nonatomic) Movie *movie;
+
+@property (weak, nonatomic) IBOutlet CustomImageView *movieImage;
 @property (weak, nonatomic) IBOutlet UILabel *movieTitle;
 @property (weak, nonatomic) IBOutlet UILabel *movieOverview;
 @property (weak, nonatomic) IBOutlet UILabel *movieRate;

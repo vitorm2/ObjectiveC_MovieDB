@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "Movie.h"
+#import "CustomImageView.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -16,14 +17,13 @@ NS_ASSUME_NONNULL_BEGIN
 @property NSNumber *movieID;
 @property Movie *movie;
 
-@property (weak, nonatomic) IBOutlet UIImageView *movieDetailImage;
+@property (weak, nonatomic) IBOutlet CustomImageView *movieDetailImage;
 @property (weak, nonatomic) IBOutlet UILabel *movieTitleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *movieGenreLabel;
 @property (weak, nonatomic) IBOutlet UILabel *movieVoteAverageLabel;
 @property (weak, nonatomic) IBOutlet UITextView *movieOverviewTextView;
-
-
-
+@property (weak, nonatomic) IBOutlet UIImageView *voteAverageImage;
+@property (weak, nonatomic) IBOutlet UILabel *overviewLabel;
 
 @end
 

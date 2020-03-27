@@ -57,22 +57,9 @@ static NSString *const imageBaseURL = @"https://image.tmdb.org/t/p/w500";
             
             // Genres
             NSArray *genresObjectArray = [movieJSON objectForKey: @"genres"];
-            movieDetails.genres = [genresObjectArray getGenreFullString];
+            movieDetails.genres = [genresObjectArray getStringWithCommas: @"name"];
             
-            dispatch_group_t group = dispatch_group_create();
-            
-            
-            dispatch_group_enter(group);
-            [self fetchImageData:movieDetails.imageURL completion:^(UIImage * image, NSString * imgURL) {
-                if (imgURL == movieDetails.imageURL) {
-                    movieDetails.movieImage = image;
-                    dispatch_group_leave(group);
-                }
-            }];
-            
-            dispatch_group_notify(group, dispatch_get_main_queue(), ^{
-                callback(movieDetails);
-            });
+            callback(movieDetails);
         }
         
         @catch ( NSException *e ) {

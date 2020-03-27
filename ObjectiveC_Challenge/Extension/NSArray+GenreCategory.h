@@ -13,8 +13,9 @@ NS_ASSUME_NONNULL_BEGIN
 @interface NSArray (GenreCategory)
 
 
-// NSArry "extension" to return genre full String
-- (NSString *) getGenreFullString;
+// NSArray "extension" to return genre full String
+- (NSString *) getStringWithCommas: (NSString *) dicKey;
+
 @end
 
 NS_ASSUME_NONNULL_END
