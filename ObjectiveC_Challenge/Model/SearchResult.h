@@ -7,6 +7,7 @@
 //
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+
 @interface SearchResult : NSObject
 
 @property NSString *poster_path;
@@ -14,7 +15,7 @@
 @property NSString *overview;
 @property NSString *release_date;
 @property NSArray *genre_ids;
-@property NSInteger id;
+@property NSInteger movieId;
 @property NSString *original_title;
 @property NSString *original_language;
 @property NSString *title;

@@ -6,9 +6,10 @@
 //  Copyright © 2020 Vitor Demenighi. All rights reserved.
 //
 
-#import "SearchResultArray.h"
+
 #import "SearchResult.h"
-@implementation ResultRequestSearch: NSObject
+#import "SearchResultArray.h"
+@implementation SearchResult: NSObject
 
 
 @end

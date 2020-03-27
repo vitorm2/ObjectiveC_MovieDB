@@ -11,6 +11,7 @@
 #import "Movie.h"
 #import "NSArray+GenreCategory.h"
 #import <UIKit/UIKit.h>
+#import "SearchResult.h"
 
 @implementation Service
 
@@ -86,10 +87,10 @@ NSString *strFormated;
     }else if (moviesCategory == RESULT_SEARCH) {
         
         NSString *urlSearch = @"https://api.themoviedb.org/3/search/movie?api_key=79bb37b9869aa0ed97dc7a23c93d0829&language=en-US&query=";
-
-       strFormated = [NSString stringWithFormat: @"%@%@", urlSearch, _strFindMe];
-
-       
+        
+        strFormated = [NSString stringWithFormat: @"%@%@", urlSearch, _strFindMe];
+        
+        
         
     }
     if (moviesCategory == RESULT_SEARCH){
@@ -123,27 +124,44 @@ NSString *strFormated;
             // Movie object array
             NSMutableArray *movies = [[NSMutableArray alloc] init];
             if (moviesCategory == RESULT_SEARCH){
-                 
-               }else {
-                   for (NSDictionary *movie in moviesResultArray) {
-                                  
-                                  Movie *currentMovie = [[Movie alloc] init];
-                                  
-                                  currentMovie.movieID = [movie objectForKey: @"id"];
-                                  currentMovie.title = [movie objectForKey: @"original_title"];
-                                  currentMovie.overview = [movie objectForKey: @"overview"];
-                                  currentMovie.vote_avegare = [movie objectForKey:@"vote_average"];
-                                  
-                                  // Image
-                                  NSString *poster_path = [movie objectForKey: @"poster_path"];
-                                  currentMovie.imageURL = [imageBaseURL stringByAppendingString: poster_path];
-                                  
-                                  [movies addObject:currentMovie];
-                                  
-                                  currentMovie = nil;
-                              }
-               }
-           
+                for (NSDictionary *movie in moviesResultArray) {
+                    
+                    SearchResult *currentMovie = [[SearchResult alloc] init];
+                    
+                   // currentMovie.movieId = [movie objectForKey:@"id"];
+                    currentMovie.original_title = [movie objectForKey:@"original_title"];
+                    currentMovie.overview = [movie objectForKey:@"overview"];
+                    currentMovie.vote_average = [movie objectForKey:@"vote_average"];
+                    
+                    // Image
+//                    NSString *poster_path = [movie objectForKey: @"poster_path"];
+//                    currentMovie.poster_path = [imageBaseURL stringByAppendingString: poster_path];
+
+
+                    [movies addObject:currentMovie];
+                    
+                    currentMovie = nil;
+                }
+            }else {
+                for (NSDictionary *movie in moviesResultArray) {
+                    
+                    Movie *currentMovie = [[Movie alloc] init];
+                    
+                    currentMovie.movieID = [movie objectForKey: @"id"];
+                    currentMovie.title = [movie objectForKey: @"original_title"];
+                    currentMovie.overview = [movie objectForKey: @"overview"];
+                    currentMovie.vote_avegare = [movie objectForKey:@"vote_average"];
+                    
+                    // Image
+                    NSString *poster_path = [movie objectForKey: @"poster_path"];
+                    currentMovie.imageURL = [imageBaseURL stringByAppendingString: poster_path];
+                    
+                    [movies addObject:currentMovie];
+                    
+                    currentMovie = nil;
+                }
+            }
+            
             NSLog(@"%lu", (unsigned long)movies.count);
             callback(movies);
             

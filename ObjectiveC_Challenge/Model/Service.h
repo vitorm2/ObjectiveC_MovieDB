@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "Movie.h"
-#import "SearchResultArray.h"
+
 @interface Service : NSObject
 
 typedef enum moviesCategoryType {

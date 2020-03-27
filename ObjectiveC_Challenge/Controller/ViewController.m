@@ -15,7 +15,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "CustomImageView.h"
 #import "ImageCache.h"
-
+#import "SearchResult.h"
 
 @interface ViewController ()
  
@@ -23,8 +23,8 @@
 
 @implementation ViewController
 BOOL isFiltred;
-
-
+TableViewCell *cell;
+NSIndexPath *indexPathTableView;
 dispatch_group_t group;
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -74,20 +74,32 @@ dispatch_group_t group;
 
 
 // MARK: - Request Movies filtred when taped enter button
+//TODO: - os dados estao vindo corretamento preenchidos so falta tocar para tela
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
-   _filteredAllMovies = [[NSMutableArray alloc] init];
-     __block NSArray<Movie *> *mov = [[NSArray alloc] init];
+    //[_filteredAllMovies removeAllObjects];
+     _filteredAllMovies = [[NSMutableArray alloc] init];
+  
+    // __block NSArray<Movie *> *mov = [[NSArray alloc] init];
+    //send text
     _myService.strFindMe = searchBar.text;
      
      dispatch_group_enter(group);
     [_myService fetchMovies:RESULT_SEARCH completion:^(NSMutableArray * movies) {
-           
-        mov = movies;
-       // mov = movies;
+       // self->_filteredAllMovies = movies;
+//        for (Movie *movie in movies) {
+//
+//            [self->_filteredAllMovies addObject:movie];
+//
+//
+//            NSLog(@"%@", movie.title);
+//        }
+        
+       // cell.movie =self->_filteredAllMovies.firstObject;
+       // cell.movie.title = @"aloooo";
            dispatch_group_leave(group);
        }];
-    // [self.movies_mainTableView reloadData];
-     NSLog(@"%@", searchBar.text);
+   //[self.movies_mainTableView reloadData];
+    
 }
 
 - (void) searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
@@ -108,8 +120,8 @@ dispatch_group_t group;
         }
         
         for (Movie *movie in _filtedNowPlayingArray) {
-            NSRange nameRange = [movie.title rangeOfString:searchText options:NSCaseInsensitiveSearch];
-            if (nameRange.location != NSNotFound){
+            NSRange range = [movie.title rangeOfString:searchText options:NSCaseInsensitiveSearch];
+            if (range.location != NSNotFound){
                 [_filteredAllMovies addObject:movie];
             }
             
@@ -131,10 +143,10 @@ dispatch_group_t group;
 
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
-    
+    indexPathTableView = indexPath;
     static NSString *simpleTableIdentifier = @"SimpleTableItem";
     
-    TableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
+     cell = [tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
     
     if(isFiltred){
         cell.movie = _filteredAllMovies[indexPath.row];
