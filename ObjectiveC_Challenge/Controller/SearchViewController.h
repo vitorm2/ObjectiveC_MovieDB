@@ -16,7 +16,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (weak, nonatomic) IBOutlet UICollectionView *main_collectionView;
 
-@property (nonatomic) Service *myService;
 @property NSArray<Movie *> *searchResultMovies;
 
 

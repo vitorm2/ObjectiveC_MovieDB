@@ -27,8 +27,6 @@
     [super viewDidLoad];
     
     [self setupNavigationBar];
-    
-    _myService = Service.new;
 
     _movies_mainTableView.dataSource = self;
     _movies_mainTableView.delegate = self;
@@ -37,7 +35,7 @@
     
     dispatch_group_enter(group);
 
-    [_myService fetchMovies:POPULAR completion:^(NSMutableArray * movies) {
+    [Service fetchMovies:POPULAR completion:^(NSMutableArray * movies) {
         
         // Sort by vote average
         self.popularMovies = [self sortMovieArrayByVoteAverage: movies];
@@ -48,7 +46,7 @@
     }];
     
      dispatch_group_enter(group);
-    [_myService fetchMovies:NOW_PLAYING completion:^(NSMutableArray * movies) {
+    [Service fetchMovies:NOW_PLAYING completion:^(NSMutableArray * movies) {
         
         // Sort by vote average
         self.nowPlayingMovies = [self sortMovieArrayByVoteAverage: movies];
@@ -109,7 +107,6 @@
     if(indexPath.section == 0) {
          cell.movie = _filtedPopularArray[indexPath.row];
     }
-    
     
     // Now Playing Section
      else if (indexPath.section == 1){

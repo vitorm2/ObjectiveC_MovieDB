@@ -21,8 +21,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    _myService = Service.new;
-    
     _main_collectionView.delegate = self;
     _main_collectionView.dataSource = self;
     
@@ -33,7 +31,7 @@
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
     
     
-    [_myService searchMovies:searchBar.text completion:^(NSMutableArray * movies) {
+    [Service searchMovies:searchBar.text completion:^(NSMutableArray * movies) {
     
         self.searchResultMovies = movies;
         

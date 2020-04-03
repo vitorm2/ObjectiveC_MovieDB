@@ -17,7 +17,6 @@
     self.movieImage.layer.cornerRadius = 10;
     self.movieVoteAverage.text = [NSString stringWithFormat:@"%.01f", movie.vote_avegare.doubleValue];
     [self.movieImage loadImageWithStringURL: movie.imageURL];
-    
 }
 
 @end

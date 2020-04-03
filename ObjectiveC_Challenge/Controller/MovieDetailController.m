@@ -18,11 +18,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    Service *myService = Service.new;
-    
         
-    [myService fetchMovieDetails:_movieID completion:^(Movie * movie) {
+    [Service fetchMovieDetails:_movieID completion:^(Movie * movie) {
         self.movie = movie;
         
         dispatch_async(dispatch_get_main_queue(), ^{

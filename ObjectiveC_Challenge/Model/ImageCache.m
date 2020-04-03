@@ -10,7 +10,7 @@
 
 @implementation ImageCache
 
-@synthesize shared;
+@synthesize cache;
 
 //#pragma mark Singleton Methods
 
@@ -25,7 +25,7 @@
 
 - (id)init {
     if (self = [super init]) {
-        shared = [[NSCache alloc] init];
+        cache = [[NSCache alloc] init];
     }
     return self;
 }

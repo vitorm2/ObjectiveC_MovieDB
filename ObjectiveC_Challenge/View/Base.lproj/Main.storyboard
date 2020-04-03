@@ -16,7 +16,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Dva-vi-bSF">
-                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <rect key="frame" x="0.0" y="108" width="414" height="754"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="20" minimumInteritemSpacing="10" id="dsf-2K-05d">
                                     <size key="itemSize" width="163" height="277"/>
@@ -33,14 +33,13 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="GNH-ja-i32" customClass="CustomImageView">
-                                                    <rect key="frame" x="0.0" y="0.0" width="154" height="229"/>
+                                                    <rect key="frame" x="5" y="0.0" width="144" height="229"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="152" id="IVp-9i-tBJ"/>
                                                         <constraint firstAttribute="height" constant="229" id="sTy-1w-6ME"/>
                                                     </constraints>
                                                 </imageView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="A2V-Qz-dHS">
-                                                    <rect key="frame" x="0.0" y="256" width="154" height="21"/>
+                                                    <rect key="frame" x="2" y="256" width="152" height="21"/>
                                                     <subviews>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Star Icon" translatesAutoresizingMaskIntoConstraints="NO" id="JLv-CX-64H">
                                                             <rect key="frame" x="0.0" y="0.0" width="13" height="21"/>
@@ -50,7 +49,7 @@
                                                             </constraints>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JXQ-j3-MEu">
-                                                            <rect key="frame" x="17" y="0.0" width="137" height="21"/>
+                                                            <rect key="frame" x="17" y="0.0" width="135" height="21"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                             <color key="textColor" red="0.59215686270000001" green="0.59215686270000001" blue="0.59215686270000001" alpha="0.84705882349999995" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -63,7 +62,7 @@
                                                     </constraints>
                                                 </stackView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The Lion King" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PyD-es-7yi">
-                                                    <rect key="frame" x="0.0" y="234" width="154" height="17"/>
+                                                    <rect key="frame" x="2" y="234" width="152" height="17"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="17" id="gFc-0x-kKW"/>
                                                         <constraint firstAttribute="width" constant="152" id="zcF-g5-esz"/>
@@ -79,12 +78,10 @@
                                             <constraint firstItem="A2V-Qz-dHS" firstAttribute="top" secondItem="PyD-es-7yi" secondAttribute="bottom" constant="5" id="3c7-oV-HNK"/>
                                             <constraint firstAttribute="bottom" secondItem="A2V-Qz-dHS" secondAttribute="bottom" id="5iU-v8-Xl4"/>
                                             <constraint firstItem="GNH-ja-i32" firstAttribute="top" secondItem="YPG-Zc-XQd" secondAttribute="top" id="Ngn-4a-ubk"/>
-                                            <constraint firstAttribute="trailing" secondItem="GNH-ja-i32" secondAttribute="trailing" id="RGy-XL-KYM"/>
                                             <constraint firstAttribute="trailing" secondItem="A2V-Qz-dHS" secondAttribute="trailing" id="WJQ-Rp-ruG"/>
-                                            <constraint firstItem="A2V-Qz-dHS" firstAttribute="leading" secondItem="YPG-Zc-XQd" secondAttribute="leading" id="XSm-3i-rCm"/>
                                             <constraint firstAttribute="trailing" secondItem="PyD-es-7yi" secondAttribute="trailing" id="aK4-ZR-Qmk"/>
-                                            <constraint firstItem="PyD-es-7yi" firstAttribute="leading" secondItem="YPG-Zc-XQd" secondAttribute="leading" id="iHR-1Z-ca6"/>
-                                            <constraint firstItem="GNH-ja-i32" firstAttribute="leading" secondItem="YPG-Zc-XQd" secondAttribute="leading" id="snQ-PL-SzF"/>
+                                            <constraint firstItem="GNH-ja-i32" firstAttribute="leading" secondItem="YPG-Zc-XQd" secondAttribute="leading" constant="5" id="mxj-VZ-zNa"/>
+                                            <constraint firstAttribute="trailing" secondItem="GNH-ja-i32" secondAttribute="trailing" constant="5" id="xTe-vI-bIM"/>
                                             <constraint firstItem="PyD-es-7yi" firstAttribute="top" secondItem="GNH-ja-i32" secondAttribute="bottom" constant="5" id="xte-Fc-PNr"/>
                                         </constraints>
                                         <size key="customSize" width="154" height="277"/>
@@ -100,7 +97,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="o01-nE-Yij" firstAttribute="bottom" secondItem="Dva-vi-bSF" secondAttribute="bottom" id="8re-qP-Nji"/>
-                            <constraint firstItem="Dva-vi-bSF" firstAttribute="top" secondItem="o01-nE-Yij" secondAttribute="top" id="Cwt-99-0gj"/>
+                            <constraint firstItem="Dva-vi-bSF" firstAttribute="top" secondItem="o01-nE-Yij" secondAttribute="top" constant="20" id="Cwt-99-0gj"/>
                             <constraint firstItem="Dva-vi-bSF" firstAttribute="leading" secondItem="o01-nE-Yij" secondAttribute="leading" id="Gs2-kf-5U1"/>
                             <constraint firstItem="o01-nE-Yij" firstAttribute="trailing" secondItem="Dva-vi-bSF" secondAttribute="trailing" id="v5d-00-w2n"/>
                         </constraints>

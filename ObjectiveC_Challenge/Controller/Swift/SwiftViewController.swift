@@ -18,24 +18,18 @@ class SwiftViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        let myService = Service()
         
         main_tableView.dataSource = self
         
         
-        myService.fetchMovies(POPULAR) { (movies) in
+        Service.fetchMovies(POPULAR) { (movies) in
             guard let movies = movies else { return }
             self.popularMoviesArray = movies as! [Movie]
             
-            myService.downloadImages(self.popularMoviesArray) { (returnDicWithAllImages) in
-                guard let returnDicWithAllImages = returnDicWithAllImages else { return }
-                self.popularMoviesImages = returnDicWithAllImages
-                
-                DispatchQueue.main.async {
-                    self.main_tableView.reloadData()
-                }
+            DispatchQueue.main.async {
+                self.main_tableView.reloadData()
             }
+            
         }
         
         

@@ -21,6 +21,7 @@
 		CF9DBE2B241FF6CA0009AA1F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CF9DBE2A241FF6CA0009AA1F /* main.m */; };
 		CFA54D9D242E3455007A7BEF /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CFA54D9C242E3455007A7BEF /* SearchViewController.m */; };
 		CFA54DA0242E40F7007A7BEF /* MovieCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CFA54D9F242E40F7007A7BEF /* MovieCollectionViewCell.m */; };
+		CFA54DA6242EC657007A7BEF /* Parse.m in Sources */ = {isa = PBXBuildFile; fileRef = CFA54DA5242EC657007A7BEF /* Parse.m */; };
 		CFB2D944242143A600D0EF1F /* Movie.m in Sources */ = {isa = PBXBuildFile; fileRef = CFB2D943242143A600D0EF1F /* Movie.m */; };
 		CFB2D94724215E3100D0EF1F /* Service.m in Sources */ = {isa = PBXBuildFile; fileRef = CFB2D94624215E3100D0EF1F /* Service.m */; };
 		CFB8BD212421C95700075720 /* NSArray+GenreCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = CFB8BD202421C95700075720 /* NSArray+GenreCategory.m */; };
@@ -53,6 +54,8 @@
 		CFA54D9C242E3455007A7BEF /* SearchViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
 		CFA54D9E242E40F7007A7BEF /* MovieCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MovieCollectionViewCell.h; sourceTree = "<group>"; };
 		CFA54D9F242E40F7007A7BEF /* MovieCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MovieCollectionViewCell.m; sourceTree = "<group>"; };
+		CFA54DA4242EC657007A7BEF /* Parse.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Parse.h; sourceTree = "<group>"; };
+		CFA54DA5242EC657007A7BEF /* Parse.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Parse.m; sourceTree = "<group>"; };
 		CFB2D9422421439200D0EF1F /* Movie.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Movie.h; sourceTree = "<group>"; };
 		CFB2D943242143A600D0EF1F /* Movie.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Movie.m; sourceTree = "<group>"; };
 		CFB2D94524215E2500D0EF1F /* Service.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Service.h; sourceTree = "<group>"; };
@@ -101,6 +104,8 @@
 			isa = PBXGroup;
 			children = (
 				CFA54D9A242D8F7C007A7BEF /* Extension */,
+				CFA54DA1242EC5FD007A7BEF /* Parse */,
+				CFA54DA2242EC606007A7BEF /* Service */,
 				CFB2D93E2421419E00D0EF1F /* Model */,
 				CFB2D940242141D100D0EF1F /* View */,
 				CFB2D93F242141AA00D0EF1F /* Controller */,
@@ -120,13 +125,29 @@
 			path = Extension;
 			sourceTree = "<group>";
 		};
+		CFA54DA1242EC5FD007A7BEF /* Parse */ = {
+			isa = PBXGroup;
+			children = (
+				CFA54DA4242EC657007A7BEF /* Parse.h */,
+				CFA54DA5242EC657007A7BEF /* Parse.m */,
+			);
+			path = Parse;
+			sourceTree = "<group>";
+		};
+		CFA54DA2242EC606007A7BEF /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				CFB2D94524215E2500D0EF1F /* Service.h */,
+				CFB2D94624215E3100D0EF1F /* Service.m */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
 		CFB2D93E2421419E00D0EF1F /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				CFB2D9422421439200D0EF1F /* Movie.h */,
 				CFB2D943242143A600D0EF1F /* Movie.m */,
-				CFB2D94524215E2500D0EF1F /* Service.h */,
-				CFB2D94624215E3100D0EF1F /* Service.m */,
 				CF39E70E242D7A560091E12E /* ImageCache.h */,
 				CF39E70F242D7A560091E12E /* ImageCache.m */,
 			);
@@ -257,6 +278,7 @@
 				CF9DBE1D241FF6C60009AA1F /* SceneDelegate.m in Sources */,
 				CF235CEF242A7A2800BB18D6 /* SwiftViewController.swift in Sources */,
 				CF39E710242D7A560091E12E /* ImageCache.m in Sources */,
+				CFA54DA6242EC657007A7BEF /* Parse.m in Sources */,
 				CFB2D94724215E3100D0EF1F /* Service.m in Sources */,
 				CFA54DA0242E40F7007A7BEF /* MovieCollectionViewCell.m in Sources */,
 			);
