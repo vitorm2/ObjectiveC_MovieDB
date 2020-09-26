@@ -18,27 +18,19 @@ class SwiftViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        let myService = Service()
         
         main_tableView.dataSource = self
         
         
-        myService.fetchMovies(POPULAR) { (movies) in
+        Service.fetchMovies(POPULAR) { (movies) in
             guard let movies = movies else { return }
             self.popularMoviesArray = movies as! [Movie]
             
-            myService.downloadImages(self.popularMoviesArray) { (returnDicWithAllImages) in
-                guard let returnDicWithAllImages = returnDicWithAllImages else { return }
-                self.popularMoviesImages = returnDicWithAllImages
-                
-                DispatchQueue.main.async {
-                    self.main_tableView.reloadData()
-                }
+            DispatchQueue.main.async {
+                self.main_tableView.reloadData()
             }
         }
-        
-        
+
     }
 
 }
@@ -52,13 +44,7 @@ extension SwiftViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "SimpleTableItem") as! TableViewCell
-        
-        cell.movieTitle?.text = popularMoviesArray[indexPath.row].title
-        cell.movieOverview?.text = popularMoviesArray[indexPath.row].overview
-        cell.movieRate?.text = (popularMoviesArray[indexPath.row].vote_avegare).stringValue
-        
-        let movieURL = popularMoviesArray[indexPath.row].imageURL!
-        cell.movieImage?.image = (popularMoviesImages[movieURL] as? UIImage) ?? UIImage()
+        cell.movie = popularMoviesArray[indexPath.row]
         
         return cell
     }

@@ -12,13 +12,11 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface SearchViewController : UIViewController <UISearchBarDelegate, UISearchResultsUpdating, UICollectionViewDataSource, UICollectionViewDelegate>
+@interface SearchViewController : UIViewController <UISearchBarDelegate, UISearchResultsUpdating, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
 
 @property (weak, nonatomic) IBOutlet UICollectionView *main_collectionView;
 
-@property (nonatomic) Service *myService;
 @property NSArray<Movie *> *searchResultMovies;
-
 
 @end
 

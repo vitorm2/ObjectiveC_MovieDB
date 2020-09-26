@@ -21,19 +21,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    _myService = Service.new;
-    
     _main_collectionView.delegate = self;
     _main_collectionView.dataSource = self;
-    
-//    self.navigationController.navigationBar.hidden = true;
 }
 
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
-    
-    
-    [_myService searchMovies:searchBar.text completion:^(NSMutableArray * movies) {
+    [Service searchMovies:searchBar.text completion:^(NSMutableArray * movies) {
     
         self.searchResultMovies = movies;
         
@@ -47,13 +41,10 @@
     self.searchResultMovies = NSArray.new;
     
     [self.main_collectionView reloadData];
-    
 }
 
 - (void)updateSearchResultsForSearchController:(nonnull UISearchController *)searchController {
 }
-
-
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     return _searchResultMovies.count;
@@ -70,6 +61,21 @@
     return cell;
 }
 
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+    CGSize screenSize = [UIScreen mainScreen].bounds.size;
+    return CGSizeMake(screenSize.width * 0.4, screenSize.width * 0.725);
+}
+
+- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
+    CGSize screenSize = [UIScreen mainScreen].bounds.size;
+    return UIEdgeInsetsMake(0, screenSize.width * 0.07, 0, screenSize.width *  0.07);
+}
+
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {
+    CGSize screenSize = [UIScreen mainScreen].bounds.size;
+    return screenSize.width * 0.07;
+}
+
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     [self performSegueWithIdentifier:@"searchSegueIdentifier" sender: _searchResultMovies[indexPath.row].movieID];
 }
@@ -81,9 +87,6 @@
          movieDetailsViewController.movieID = sender;
      }
 }
-
-
-
 
 
 @end

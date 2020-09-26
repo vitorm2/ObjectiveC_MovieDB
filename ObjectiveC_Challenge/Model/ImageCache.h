@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ImageCache : NSObject
 
-@property (nonatomic, retain) NSCache *shared;
+@property (nonatomic, retain) NSCache *cache;
 
 + (id)sharedManager;
 

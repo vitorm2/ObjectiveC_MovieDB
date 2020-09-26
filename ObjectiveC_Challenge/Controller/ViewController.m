@@ -27,8 +27,6 @@
     [super viewDidLoad];
     
     [self setupNavigationBar];
-    
-    _myService = Service.new;
 
     _movies_mainTableView.dataSource = self;
     _movies_mainTableView.delegate = self;
@@ -37,7 +35,7 @@
     
     dispatch_group_enter(group);
 
-    [_myService fetchMovies:POPULAR completion:^(NSMutableArray * movies) {
+    [Service fetchMovies:POPULAR completion:^(NSMutableArray * movies) {
         
         // Sort by vote average
         self.popularMovies = [self sortMovieArrayByVoteAverage: movies];
@@ -48,7 +46,7 @@
     }];
     
      dispatch_group_enter(group);
-    [_myService fetchMovies:NOW_PLAYING completion:^(NSMutableArray * movies) {
+    [Service fetchMovies:NOW_PLAYING completion:^(NSMutableArray * movies) {
         
         // Sort by vote average
         self.nowPlayingMovies = [self sortMovieArrayByVoteAverage: movies];
@@ -71,23 +69,19 @@
 - (void)setupNavigationBar {
     
     self.navigationItem.title = @"Movies";
-    self.navigationController.navigationBar.prefersLargeTitles = true;
-    
-    
+   
     // Initialize search view controller
-    UINavigationController* searchNavigation =[self.storyboard instantiateViewControllerWithIdentifier:@"searchNavigation"];
-
-    UISearchController *searchController = [[UISearchController alloc] initWithSearchResultsController: searchNavigation];
+    SearchViewController *searchViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"searchViewController"];
     
-    SearchViewController *searchViewController = searchNavigation.topViewController;
+    UISearchController *searchController = [[UISearchController alloc] initWithSearchResultsController: searchViewController];
     
     searchController.searchResultsUpdater = searchViewController;
     searchController.searchBar.delegate = searchViewController;
     
-    
     searchController.obscuresBackgroundDuringPresentation = true;
     self.navigationItem.searchController = searchController;
     self.navigationItem.hidesSearchBarWhenScrolling = false;
+    
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(NSNumber *)sender {
@@ -109,7 +103,6 @@
     if(indexPath.section == 0) {
          cell.movie = _filtedPopularArray[indexPath.row];
     }
-    
     
     // Now Playing Section
      else if (indexPath.section == 1){

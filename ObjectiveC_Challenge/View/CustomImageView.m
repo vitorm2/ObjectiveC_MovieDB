@@ -16,32 +16,23 @@
 
     self.imageURL = urlString;
     
-    NSURL *imgURL = [NSURL URLWithString: urlString];
-    
     self.image = nil;
     
-    
-    if([[ImageCache.sharedManager shared] objectForKey:urlString]) {
-        self.image = [[ImageCache.sharedManager shared] objectForKey:urlString];
+    if([[ImageCache.sharedManager cache] objectForKey:urlString]) {
+        self.image = [[ImageCache.sharedManager cache] objectForKey:urlString];
         return;
     }
-
-      [[NSURLSession.sharedSession dataTaskWithURL:(imgURL) completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-          if (!error) {
-              UIImage *returnImage = [[UIImage alloc] initWithData:data];
-              
-              if (self.imageURL == urlString) {
-                  dispatch_async(dispatch_get_main_queue(), ^{
-                      self.image = returnImage;
-                  });
-              }
-              
-              [[ImageCache.sharedManager shared] setObject:returnImage forKey:urlString];
-              
-          }else{
-              NSLog(@"IMAGE FETCH ERROR: %@",error);
-          }
-      }] resume] ;
+    
+    [Service fetchImageData: urlString completion:^(UIImage * returnImage) {
+        
+        if (self.imageURL == urlString) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                self.image = returnImage;
+            });
+        }
+        
+        [[ImageCache.sharedManager cache] setObject:returnImage forKey:urlString];
+    }];
     
     
 }
