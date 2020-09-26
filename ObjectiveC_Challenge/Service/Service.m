@@ -62,6 +62,9 @@ static NSString *const urlBase = @"https://api.themoviedb.org/3/movie/";
 
 + (void)searchMovies:(NSString *)searchString completion:(void (^)(NSMutableArray *))callback {
     
+    if ([searchString containsString:@" "]) {
+        searchString = [searchString stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
+    }
     
     NSString *urlString = [NSString stringWithFormat: @"https://api.themoviedb.org/3/search/movie?api_key=79bb37b9869aa0ed97dc7a23c93d0829&language=en-US&query=%@", searchString];
     NSURL *url = [NSURL URLWithString: urlString];

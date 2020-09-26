@@ -69,23 +69,19 @@
 - (void)setupNavigationBar {
     
     self.navigationItem.title = @"Movies";
-    self.navigationController.navigationBar.prefersLargeTitles = true;
-    
-    
+   
     // Initialize search view controller
-    UINavigationController* searchNavigation =[self.storyboard instantiateViewControllerWithIdentifier:@"searchNavigation"];
-
-    UISearchController *searchController = [[UISearchController alloc] initWithSearchResultsController: searchNavigation];
+    SearchViewController *searchViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"searchViewController"];
     
-    SearchViewController *searchViewController = searchNavigation.topViewController;
+    UISearchController *searchController = [[UISearchController alloc] initWithSearchResultsController: searchViewController];
     
     searchController.searchResultsUpdater = searchViewController;
     searchController.searchBar.delegate = searchViewController;
     
-    
     searchController.obscuresBackgroundDuringPresentation = true;
     self.navigationItem.searchController = searchController;
     self.navigationItem.hidesSearchBarWhenScrolling = false;
+    
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(NSNumber *)sender {

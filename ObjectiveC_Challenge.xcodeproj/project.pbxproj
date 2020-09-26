@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		CF235CEF242A7A2800BB18D6 /* SwiftViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF235CEE242A7A2800BB18D6 /* SwiftViewController.swift */; };
 		CF39E710242D7A560091E12E /* ImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = CF39E70F242D7A560091E12E /* ImageCache.m */; };
 		CF8E8AF6242D23FC003E8924 /* CustomImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF8E8AF5242D23FC003E8924 /* CustomImageView.m */; };
 		CF910AA72423C042002FA1CE /* TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CF910AA52423C042002FA1CE /* TableViewCell.m */; };
@@ -22,9 +21,22 @@
 		CFA54D9D242E3455007A7BEF /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CFA54D9C242E3455007A7BEF /* SearchViewController.m */; };
 		CFA54DA0242E40F7007A7BEF /* MovieCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CFA54D9F242E40F7007A7BEF /* MovieCollectionViewCell.m */; };
 		CFA54DA6242EC657007A7BEF /* Parse.m in Sources */ = {isa = PBXBuildFile; fileRef = CFA54DA5242EC657007A7BEF /* Parse.m */; };
+		CFAE40F825200483008D179F /* Service.m in Sources */ = {isa = PBXBuildFile; fileRef = CFB2D94624215E3100D0EF1F /* Service.m */; };
+		CFAE40FD2520054B008D179F /* Movie.m in Sources */ = {isa = PBXBuildFile; fileRef = CFB2D943242143A600D0EF1F /* Movie.m */; };
+		CFAE41002520054F008D179F /* Parse.m in Sources */ = {isa = PBXBuildFile; fileRef = CFA54DA5242EC657007A7BEF /* Parse.m */; };
+		CFAE410325200600008D179F /* CustomImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF8E8AF5242D23FC003E8924 /* CustomImageView.m */; };
+		CFAE410C25200724008D179F /* ImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = CF39E70F242D7A560091E12E /* ImageCache.m */; };
+		CFAE4113252008DD008D179F /* TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CF910AA52423C042002FA1CE /* TableViewCell.m */; };
 		CFB2D944242143A600D0EF1F /* Movie.m in Sources */ = {isa = PBXBuildFile; fileRef = CFB2D943242143A600D0EF1F /* Movie.m */; };
 		CFB2D94724215E3100D0EF1F /* Service.m in Sources */ = {isa = PBXBuildFile; fileRef = CFB2D94624215E3100D0EF1F /* Service.m */; };
 		CFB8BD212421C95700075720 /* NSArray+GenreCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = CFB8BD202421C95700075720 /* NSArray+GenreCategory.m */; };
+		CFF78F8824DB195700348B6F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF78F8724DB195700348B6F /* AppDelegate.swift */; };
+		CFF78F8A24DB195700348B6F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF78F8924DB195700348B6F /* SceneDelegate.swift */; };
+		CFF78F8F24DB195700348B6F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CFF78F8D24DB195700348B6F /* Main.storyboard */; };
+		CFF78F9124DB195C00348B6F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CFF78F9024DB195C00348B6F /* Assets.xcassets */; };
+		CFF78F9424DB195C00348B6F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CFF78F9224DB195C00348B6F /* LaunchScreen.storyboard */; };
+		CFF78F9924DB199C00348B6F /* SwiftViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF235CEE242A7A2800BB18D6 /* SwiftViewController.swift */; };
+		CFF78F9A24DB1A1F00348B6F /* ObjectiveC_Challenge-Bridging-Header.h in Sources */ = {isa = PBXBuildFile; fileRef = CF235CED242A7A2800BB18D6 /* ObjectiveC_Challenge-Bridging-Header.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,6 +74,13 @@
 		CFB2D94624215E3100D0EF1F /* Service.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Service.m; sourceTree = "<group>"; };
 		CFB8BD1F2421C95700075720 /* NSArray+GenreCategory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSArray+GenreCategory.h"; sourceTree = "<group>"; };
 		CFB8BD202421C95700075720 /* NSArray+GenreCategory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSArray+GenreCategory.m"; sourceTree = "<group>"; };
+		CFF78F8524DB195700348B6F /* Swift_Version.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Swift_Version.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CFF78F8724DB195700348B6F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		CFF78F8924DB195700348B6F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		CFF78F8E24DB195700348B6F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		CFF78F9024DB195C00348B6F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		CFF78F9324DB195C00348B6F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		CFF78F9524DB195C00348B6F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,22 +91,21 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		CFF78F8224DB195700348B6F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		CF235CF2242A7B6900BB18D6 /* Swift */ = {
-			isa = PBXGroup;
-			children = (
-				CF235CED242A7A2800BB18D6 /* ObjectiveC_Challenge-Bridging-Header.h */,
-				CF235CEE242A7A2800BB18D6 /* SwiftViewController.swift */,
-			);
-			path = Swift;
-			sourceTree = "<group>";
-		};
 		CF9DBE0C241FF6C60009AA1F = {
 			isa = PBXGroup;
 			children = (
 				CF9DBE17241FF6C60009AA1F /* ObjectiveC_Challenge */,
+				CFF78F8624DB195700348B6F /* Swift_Version */,
 				CF9DBE16241FF6C60009AA1F /* Products */,
 			);
 			sourceTree = "<group>";
@@ -96,6 +114,7 @@
 			isa = PBXGroup;
 			children = (
 				CF9DBE15241FF6C60009AA1F /* ObjectiveC_Challenge.app */,
+				CFF78F8524DB195700348B6F /* Swift_Version.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -163,7 +182,6 @@
 				CF910AAF2423F861002FA1CE /* MovieDetailController.m */,
 				CFA54D9B242E3455007A7BEF /* SearchViewController.h */,
 				CFA54D9C242E3455007A7BEF /* SearchViewController.m */,
-				CF235CF2242A7B6900BB18D6 /* Swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -195,6 +213,21 @@
 			path = Utility;
 			sourceTree = "<group>";
 		};
+		CFF78F8624DB195700348B6F /* Swift_Version */ = {
+			isa = PBXGroup;
+			children = (
+				CF235CED242A7A2800BB18D6 /* ObjectiveC_Challenge-Bridging-Header.h */,
+				CF235CEE242A7A2800BB18D6 /* SwiftViewController.swift */,
+				CFF78F8724DB195700348B6F /* AppDelegate.swift */,
+				CFF78F8924DB195700348B6F /* SceneDelegate.swift */,
+				CFF78F8D24DB195700348B6F /* Main.storyboard */,
+				CFF78F9024DB195C00348B6F /* Assets.xcassets */,
+				CFF78F9224DB195C00348B6F /* LaunchScreen.storyboard */,
+				CFF78F9524DB195C00348B6F /* Info.plist */,
+			);
+			path = Swift_Version;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -215,18 +248,39 @@
 			productReference = CF9DBE15241FF6C60009AA1F /* ObjectiveC_Challenge.app */;
 			productType = "com.apple.product-type.application";
 		};
+		CFF78F8424DB195700348B6F /* Swift_Version */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CFF78F9624DB195C00348B6F /* Build configuration list for PBXNativeTarget "Swift_Version" */;
+			buildPhases = (
+				CFF78F8124DB195700348B6F /* Sources */,
+				CFF78F8224DB195700348B6F /* Frameworks */,
+				CFF78F8324DB195700348B6F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Swift_Version;
+			productName = Swift_Version;
+			productReference = CFF78F8524DB195700348B6F /* Swift_Version.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		CF9DBE0D241FF6C60009AA1F /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1130;
+				LastSwiftUpdateCheck = 1140;
+				LastUpgradeCheck = 1140;
 				ORGANIZATIONNAME = "Vitor Demenighi";
 				TargetAttributes = {
 					CF9DBE14241FF6C60009AA1F = {
 						CreatedOnToolsVersion = 11.3.1;
 						LastSwiftMigration = 1130;
+					};
+					CFF78F8424DB195700348B6F = {
+						CreatedOnToolsVersion = 11.4.1;
 					};
 				};
 			};
@@ -244,6 +298,7 @@
 			projectRoot = "";
 			targets = (
 				CF9DBE14241FF6C60009AA1F /* ObjectiveC_Challenge */,
+				CFF78F8424DB195700348B6F /* Swift_Version */,
 			);
 		};
 /* End PBXProject section */
@@ -256,6 +311,16 @@
 				CF9DBE28241FF6CA0009AA1F /* LaunchScreen.storyboard in Resources */,
 				CF9DBE25241FF6CA0009AA1F /* Assets.xcassets in Resources */,
 				CF9DBE23241FF6C60009AA1F /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CFF78F8324DB195700348B6F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CFF78F9424DB195C00348B6F /* LaunchScreen.storyboard in Resources */,
+				CFF78F9124DB195C00348B6F /* Assets.xcassets in Resources */,
+				CFF78F8F24DB195700348B6F /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -276,11 +341,27 @@
 				CFB8BD212421C95700075720 /* NSArray+GenreCategory.m in Sources */,
 				CF9DBE2B241FF6CA0009AA1F /* main.m in Sources */,
 				CF9DBE1D241FF6C60009AA1F /* SceneDelegate.m in Sources */,
-				CF235CEF242A7A2800BB18D6 /* SwiftViewController.swift in Sources */,
 				CF39E710242D7A560091E12E /* ImageCache.m in Sources */,
 				CFA54DA6242EC657007A7BEF /* Parse.m in Sources */,
 				CFB2D94724215E3100D0EF1F /* Service.m in Sources */,
 				CFA54DA0242E40F7007A7BEF /* MovieCollectionViewCell.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CFF78F8124DB195700348B6F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CFF78F9A24DB1A1F00348B6F /* ObjectiveC_Challenge-Bridging-Header.h in Sources */,
+				CFF78F9924DB199C00348B6F /* SwiftViewController.swift in Sources */,
+				CFAE410325200600008D179F /* CustomImageView.m in Sources */,
+				CFAE4113252008DD008D179F /* TableViewCell.m in Sources */,
+				CFAE40FD2520054B008D179F /* Movie.m in Sources */,
+				CFF78F8824DB195700348B6F /* AppDelegate.swift in Sources */,
+				CFAE410C25200724008D179F /* ImageCache.m in Sources */,
+				CFAE41002520054F008D179F /* Parse.m in Sources */,
+				CFF78F8A24DB195700348B6F /* SceneDelegate.swift in Sources */,
+				CFAE40F825200483008D179F /* Service.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -299,6 +380,22 @@
 			isa = PBXVariantGroup;
 			children = (
 				CF9DBE27241FF6CA0009AA1F /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		CFF78F8D24DB195700348B6F /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CFF78F8E24DB195700348B6F /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		CFF78F9224DB195C00348B6F /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CFF78F9324DB195C00348B6F /* Base */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -412,6 +509,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -430,7 +528,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "Vitor-Demenighi.ObjectiveC-Challen2";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "/Users/vitordemenighi/Desktop/ObjectiveC_Challenge/ObjectiveC_Challenge/Controller/Swift/ObjectiveC_Challenge-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "/Users/vitordemenighi/Desktop/Challenges/ObjectiveC_Challenge/Swift_Version/ObjectiveC_Challenge-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -451,7 +549,50 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "Vitor-Demenighi.ObjectiveC-Challen2";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "/Users/vitordemenighi/Desktop/ObjectiveC_Challenge/ObjectiveC_Challenge/Controller/Swift/ObjectiveC_Challenge-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "/Users/vitordemenighi/Desktop/Challenges/ObjectiveC_Challenge/Swift_Version/ObjectiveC_Challenge-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		CFF78F9724DB195C00348B6F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 572YF9FD67;
+				INFOPLIST_FILE = Swift_Version/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.pediatria.graphi.Swift-Version";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OBJC_BRIDGING_HEADER = "/Users/vitordemenighi/Desktop/Challenges/ObjectiveC_Challenge/Swift_Version/ObjectiveC_Challenge-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		CFF78F9824DB195C00348B6F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 572YF9FD67;
+				INFOPLIST_FILE = Swift_Version/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.pediatria.graphi.Swift-Version";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "/Users/vitordemenighi/Desktop/Challenges/ObjectiveC_Challenge/Swift_Version/ObjectiveC_Challenge-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -474,6 +615,15 @@
 			buildConfigurations = (
 				CF9DBE2F241FF6CA0009AA1F /* Debug */,
 				CF9DBE30241FF6CA0009AA1F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CFF78F9624DB195C00348B6F /* Build configuration list for PBXNativeTarget "Swift_Version" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CFF78F9724DB195C00348B6F /* Debug */,
+				CFF78F9824DB195C00348B6F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

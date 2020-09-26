@@ -40,9 +40,4 @@
     }];
     
 }
-
-- (void)viewWillAppear:(BOOL)animated {
-    self.navigationController.navigationBar.prefersLargeTitles = NO;
-}
-
 @end

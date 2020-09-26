@@ -29,10 +29,8 @@ class SwiftViewController: UIViewController {
             DispatchQueue.main.async {
                 self.main_tableView.reloadData()
             }
-            
         }
-        
-        
+
     }
 
 }
@@ -46,13 +44,7 @@ extension SwiftViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "SimpleTableItem") as! TableViewCell
-        
-        cell.movieTitle?.text = popularMoviesArray[indexPath.row].title
-        cell.movieOverview?.text = popularMoviesArray[indexPath.row].overview
-        cell.movieRate?.text = (popularMoviesArray[indexPath.row].vote_avegare).stringValue
-        
-        let movieURL = popularMoviesArray[indexPath.row].imageURL!
-        cell.movieImage?.image = (popularMoviesImages[movieURL] as? UIImage) ?? UIImage()
+        cell.movie = popularMoviesArray[indexPath.row]
         
         return cell
     }
